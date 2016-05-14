@@ -6,6 +6,7 @@ from loggers.error_logger import log_the_error
 import kiss
 import kiss.util
 import kiss.constants
+import config
 
 kiss_prot = None
 
@@ -121,9 +122,7 @@ class KISS_thread(QtCore.QThread):
         try:
             print "connect"
             global kiss_prot
-            com_port_number = 5         #Enter Your COM Port Number Here.
-            serial_name = com_port_number - 1
-            kiss_prot = kiss.KISS(port=serial_name, speed=9600)
+            kiss_prot = kiss.KISS(port=config.kiss_serial_name, speed=config.kiss_baudrate)
             kiss_prot.start()
             kiss_prot.read(self.read_callback)
         except:

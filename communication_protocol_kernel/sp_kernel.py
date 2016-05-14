@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 import serial
 import time
+import config
 
-com_port_number = 1         #Enter Your COM Port Number Here.
-serial_name = com_port_number - 1
-ser_baudrate = 19200
-ser = serial.Serial(serial_name, ser_baudrate, timeout=5000)
-read_byte_mode = 1
-print "Serial port name:"
-print ser.name
+
+ser = serial.Serial(config.rxq3_serial_name, config.rxq3_baudrate, timeout=5000)
+
 
 class SerialProtocol():
     def __init__(self):
@@ -34,7 +31,7 @@ class SerialProtocol():
 
     def read(self):
         if not self.sp_packetAvailable:
-            bufferChar = ser.read(read_byte_mode)
+            bufferChar = ser.read(1)
             if (self.sp_startMarkerStatus < len(self.sp_startMarker)):
                 if ( self.sp_startMarker[self.sp_startMarkerStatus] == bufferChar ):
                     self.sp_startMarkerStatus += 1
