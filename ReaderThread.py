@@ -3,6 +3,8 @@
 from PyQt4 import QtCore
 from PyQt4.QtCore import QThreadPool
 from communication_protocol_kernel import sp_kernel
+import event
+from event import Event
 from loggers.logger import log_the_data
 from network_communication.FTP_thread import FTP_thread
 from network_communication.WEB_request_thread import WEB_request_thread
@@ -154,6 +156,12 @@ class ReaderThread(QtCore.QThread):
                 RAM_usage = telemetry_tokens[5]
                 payload_module_temperature = telemetry_tokens[6]
                 payload_module_humidity = telemetry_tokens[7]
+
+
+                data = {
+                    "onboard_computer_CPU_temperature": str(CPU_temperature),
+                }
+                self.eventManager.sendDisplaySignal(Event(event.TYPE_TELEMETRY_PACKET, data))
 
                 self.telemetry_decoder.ui_main_window.onboard_computer_CPU_temperature_lcdNumber.\
                     display(str(CPU_temperature))

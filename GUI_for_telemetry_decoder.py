@@ -21,7 +21,7 @@ class GUI_for_telemetry_decoder(QtGui.QMainWindow):
     column_index = {'time': 0, 'CPU_temperature': 1, 'CPU_usage': 2, 'RAM_usage': 3, \
                                 'payload_module_temperature': 1,'payload_module_humidity': 2}
 
-    def __init__(self):
+    def __init__(self, event_manager):
         """Constructor."""
         QtGui.QMainWindow.__init__(self)
         self.ui_main_window = telemetry_decoder_form.Ui_MainWindow()
