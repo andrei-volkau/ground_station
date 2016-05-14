@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PyQt4 import QtCore
-import winsound
+from play_sound import play_sound
 
 
 class WriterThread(QtCore.QThread):
@@ -20,7 +20,7 @@ class WriterThread(QtCore.QThread):
         else:
             data = '1;1;%s' % name
         self.communication_protocol.send_packet('c', data)
-        winsound.PlaySound('./sound_files/command_is_sent.wav', winsound.SND_FILENAME)
+        play_sound('./sound_files/command_is_sent.wav')
 
     def enable_emergency_mode(self):
         """Enable emergency mode of work for miniaturized satellite simulator."""
