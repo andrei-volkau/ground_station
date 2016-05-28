@@ -2,13 +2,12 @@
 
 from PyQt4 import QtCore
 from PyQt4.QtCore import QThreadPool
+
 from communication_protocol_kernel import sp_kernel
-import event
-from event import Event
 from loggers.logger import log_the_data
 from network_communication.FTP_thread import FTP_thread
 from network_communication.WEB_request_thread import WEB_request_thread
-from play_sound import  play_sound
+from sound import sound
 
 
 class ReaderThread(QtCore.QThread):
@@ -25,7 +24,7 @@ class ReaderThread(QtCore.QThread):
     def set_control_program(self, control_program):
         """Set a control program.
         Args:
-            control_program (GUI_for_control_program): It is a instance of GUI of a miniaturized satellite simulator
+            control_program (GUI_for_control_program): It is a instance of GUI of a miniaturized satellite imitator
              control program.
         """
         self.control_program = control_program
@@ -34,7 +33,7 @@ class ReaderThread(QtCore.QThread):
         """Set a telemetry decoder.
         Args:
             telemetry_decoder (GUI_for_telemetry_decoder): It is a instance of GUI of telemetry decoder for a
-            miniaturized satellite simulator.
+            miniaturized satellite imitator.
         """
         self.telemetry_decoder = telemetry_decoder
 
@@ -51,12 +50,12 @@ class ReaderThread(QtCore.QThread):
             if package_info.get('package_type') == 's' or package_info.get('package_type') == 'r':
                 self.control_program \
                     .ui_main_window.undecoded_data_from_packages_textEdit.append(str(package_info))
-                play_sound('./sound_files/command_is_done.wav')
+                sound.play(sound.CMD_IS_DONE)
             elif package_info.get('package_type') == 'r':
                 self.control_program \
                     .ui_main_window.undecoded_data_from_packages_textEdit.append(str(package_info))
             # elif package_info.get('package_type') == 'd':
-            #     winsound.PlaySound("./sound_files\\telemetry_information_is_reseived.wav", winsound.SND_FILENAME)
+            #     sound.play(sound.TELEMETRY)
             #     self.telemetry_decoder.ui_main_window.undecoded_data_textEdit.append(str(package_info))
             #     telemetry_tokens = package_info['payload'].split(";")
             #     print telemetry_tokens
@@ -98,7 +97,7 @@ class ReaderThread(QtCore.QThread):
 
 
             elif package_info.get('package_type') == 'e':
-                play_sound("./sound_files/telemetry_information_is_reseived.wav")
+                sound.play(sound.TELEMETRY_RECEIVED)
                 self.telemetry_decoder.ui_main_window.undecoded_data_textEdit.append(str(package_info))
                 telemetry_tokens = package_info['payload'].split(";")
                 print telemetry_tokens
@@ -123,7 +122,7 @@ class ReaderThread(QtCore.QThread):
                 #TODO: send to web
 
             elif package_info.get('package_type') == 'n':
-                play_sound("./sound_files/telemetry_information_is_reseived.wav")
+                sound.play(sound.TELEMETRY_RECEIVED)
                 self.telemetry_decoder.ui_main_window.undecoded_data_textEdit.append(str(package_info))
                 telemetry_tokens = package_info['payload'].split(";")
                 print telemetry_tokens
@@ -146,7 +145,7 @@ class ReaderThread(QtCore.QThread):
                     display(str(RAM_usage))
 
             elif package_info.get('package_type') == 'o':
-                play_sound("./sound_files/telemetry_information_is_reseived.wav")
+                sound.play(sound.TELEMETRY_RECEIVED)
                 self.telemetry_decoder.ui_main_window.undecoded_data_textEdit.append(str(package_info))
                 telemetry_tokens = package_info['payload'].split(";")
                 print telemetry_tokens

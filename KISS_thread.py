@@ -1,25 +1,28 @@
 # -*- coding: utf-8 -*-
 import sys
-from PyQt4 import QtCore
-from loggers.logger import log_the_data
-from loggers.error_logger import log_the_error
+
 import kiss
-import kiss.util
 import kiss.constants
+import kiss.util
+from PyQt4 import QtCore
+
 import config
+from loggers.error_logger import log_the_error
+from loggers.logger import log_the_data
 
 kiss_prot = None
 
 
 class KISS_thread(QtCore.QThread):
     """This class represent a writer thread, that write data to the serial port's buffer."""
-    def __init__(self, reader_thread):
+
+    def __init__(self, parent, reader_thread):
         """Make a instance of the ReaderAndWriterThread class.
         Args:
             protocol (SerialProtocol): It is a instance of a communication protocol.
         """
         self.reader_thread = reader_thread
-        super(KISS_thread, self).__init__()
+        super(KISS_thread, self).__init__(parent)
 
     def run(self):
         print "connect strted"

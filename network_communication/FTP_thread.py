@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from ftplib import FTP
 import sys
+from ftplib import FTP
 
 from PyQt4 import QtCore
 
@@ -9,6 +9,7 @@ from loggers.error_logger import log_the_error
 
 class FTP_thread(QtCore.QRunnable):
     """This class represent a writer thread, that write data to the serial port's buffer."""
+
     def __init__(self, protocol, file_address, file_name):
         """Make a instance of the WriterThread class.
         Args:
@@ -25,7 +26,6 @@ class FTP_thread(QtCore.QRunnable):
         except:
             error_message = "It is impossible to access to the FTP-server" + ";" + str(sys.exc_info())
             log_the_error(error_message)
-
 
     def send(self):
         """Send file to the server.

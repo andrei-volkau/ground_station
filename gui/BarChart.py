@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
+import numpy as np
 from PyQt4 import QtGui
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
-import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 
 
-class DataPlotter(QtGui.QDialog):
-    """This class implement mechanism for plotting of a bar chart for given data."""
+class BarChart(QtGui.QDialog):
+    """
+        Implements mechanism for plotting of a bar chart for given data.
+    """
     def __init__(self, bar_chart_name, ordinate_name, data_for_plotting, parent=None):
-        """Make a instance of DataPlotter class.
+        """Make a instance of BarChart class.
         Args:
             bar_chart_name (str): It is a name of a bar chart.
             ordinate_name (str): It is a ordinate name of a bar chart.
             data_for_plotting (list): It is a data for plotting of a bar chart.
         """
-        super(DataPlotter, self).__init__(parent)
+        super(BarChart, self).__init__(parent)
         self.data = data_for_plotting
         self.graph_name = bar_chart_name
         self.ordinate_name = ordinate_name
