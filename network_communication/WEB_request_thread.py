@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import httplib
-import urllib
+import requests
 import sys
 from PyQt4 import QtCore
 from loggers.error_logger import log_the_error
@@ -14,8 +13,9 @@ class WEB_request_thread(QtCore.QRunnable):
             protocol (SerialProtocol): It is a instance of a communication protocol.
         """
         super(WEB_request_thread, self).__init__()
-        self.data_for_sending = data_for_sending
+        self.data = data_for_sending
         self.addr = address
+
 
     def run(self):
         try:
@@ -30,9 +30,6 @@ class WEB_request_thread(QtCore.QRunnable):
          file_address (str): It is a destination address of the file.
          file_name (str): It is a file name.
         """
-        conn = httplib.HTTPConnection('sputnik-bsu.herokuapp.com:80')
-        params = urllib.urlencode(self.data_for_sending)
-        # print params
-        conn.request("GET", self.addr + "?" + params)
-        response = conn.getresponse()
+        r = requests.post(self.addr, self.data)
+        print r.content
 

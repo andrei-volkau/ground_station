@@ -208,7 +208,7 @@ class ReaderThread(QtCore.QThread):
 
 
     def send_file_to_the_server(self, addr, name):
-        ftp_thread = FTP_thread(self.communication_protocol, addr, name)
+        ftp_thread = FTP_thread(addr, name)
         QThreadPool.globalInstance().start(ftp_thread)
 
 

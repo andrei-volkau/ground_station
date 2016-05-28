@@ -61,7 +61,6 @@ class BarChart(QtGui.QDialog):
         plt.ylabel(self.ordinate_name)
         plt.xlabel("Package emitting date")
         labels = [s for (s, num) in self.data]
-        print self.data
         plt.xticks(x + width/2.0, labels)
 
         # refresh canvas

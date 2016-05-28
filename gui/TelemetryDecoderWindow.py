@@ -79,16 +79,16 @@ class TelemetryDecoderWindow(QMainWindow):
         self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
 
     def plot_bar_chart_for_on_board_computer_CPU_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_CPU_usage_plot)
 
     def plot_bar_chart_for_on_board_computer_CPU_temperature(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_CPU_temperature_plot)
 
     def plot_bar_chart_for_on_board_computer_RAM_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_RAM_usage_plot)
 
     def plot_bar_chart_for_payloads_humidity(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_payloads_humidity_plot)
 
     def plot_bar_chart_for_payloads_temperature(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_payloads_temperature_plot)

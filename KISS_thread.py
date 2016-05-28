@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+from PyQt4.QtCore import QThread
 
 import kiss
 import kiss.constants
@@ -16,13 +17,13 @@ kiss_prot = None
 class KISS_thread(QtCore.QThread):
     """This class represent a writer thread, that write data to the serial port's buffer."""
 
-    def __init__(self, parent, reader_thread):
+    def __init__(self, control_system):
         """Make a instance of the ReaderAndWriterThread class.
         Args:
             protocol (SerialProtocol): It is a instance of a communication protocol.
         """
-        self.reader_thread = reader_thread
-        super(KISS_thread, self).__init__(parent)
+        QThread.__init__(self, control_system)
+        self.control_system = control_system
 
     def run(self):
         print "connect strted"
@@ -112,14 +113,7 @@ class KISS_thread(QtCore.QThread):
             return
         payload = data[start:]
         print "AX25 data field is", payload
-        print "payload variable type", type(payload)
-        package_type = payload[0]
-        print "package_type variable", package_type
-        print "package _type variable type", type(payload)
-        dataString = payload[2:]
-        print "data string variable", dataString
-        package_info = {'package_type': package_type, 'payload': dataString.strip()}
-        self.reader_thread.packet_received(package_info)
+        self.control_system.on_packet_received(payload)
 
     def connect(self):
         try:
