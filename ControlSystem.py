@@ -1,6 +1,6 @@
 from PyQt4.QtCore import QObject
 from KISS_thread import KISS_thread
-from TelemetryParser import parse_telemetry
+from PayloadParser import parse_payload
 from network_communication import WEB_request_thread, FTP_thread
 
 CMD_EMERGENCY = "CMD_EMERGENCY"
@@ -24,9 +24,10 @@ class ControlSystem(QObject):
     def send_command(self, cmd):
         print "Issued command:", cmd
 
-    def on_packet_received(payload):
-        packet = parse_telemetry(payload)
-        WEB_request_thread('http://sputnik-bsu.herokuapp.com/api/v1/sensors', )
+    def on_packet_received(self, payload):
+        data = parse_payload(payload)
+        print "payload in python map", data
+        # WEB_request_thread('http://sputnik-bsu.herokuapp.com/api/v1/sensors', )
 
         #FTP_thread()
 
