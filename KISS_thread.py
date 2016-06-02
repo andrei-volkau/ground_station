@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-from PyQt4.QtCore import QThread
+from PyQt4.QtCore import QThread, pyqtSignal
 
 import kiss
 import kiss.constants
@@ -16,6 +16,7 @@ kiss_prot = None
 
 class KISS_thread(QtCore.QThread):
     """This class represent a writer thread, that write data to the serial port's buffer."""
+    packet_received = pyqtSignal("QString", name="packetReceived")
 
     def __init__(self, control_system):
         """Make a instance of the ReaderAndWriterThread class.
@@ -23,7 +24,8 @@ class KISS_thread(QtCore.QThread):
             protocol (SerialProtocol): It is a instance of a communication protocol.
         """
         QThread.__init__(self, control_system)
-        self.control_system = control_system
+        # self.control_system = control_system
+
 
     def run(self):
         print "connect strted"
@@ -87,7 +89,6 @@ class KISS_thread(QtCore.QThread):
 
     def read_callback(self,data):
         print "read_callback"
-        print data
         kiss_data = kiss.constants.FEND + kiss.util.escape_special_codes(data) + kiss.constants.FEND
         log_the_data("./telemetry_log_files/BSU_satellite.kss", kiss_data)
         data = data[1:]
@@ -112,8 +113,8 @@ class KISS_thread(QtCore.QThread):
             print "packet is empty"
             return
         payload = data[start:]
-        print "AX25 data field is", payload
-        self.control_system.on_packet_received(payload)
+        # self.control_system.on_packet_received(payload)
+        self.packet_received.emit(payload)
 
     def connect(self):
         try:

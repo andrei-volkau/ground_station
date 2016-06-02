@@ -1,7 +1,8 @@
 from PyQt4.QtCore import QObject
+
 from KISS_thread import KISS_thread
 from PayloadParser import parse_payload
-from network_communication import WEB_request_thread, FTP_thread
+from telemetry_sharing.push_to_website import push_to_website
 
 CMD_EMERGENCY = "CMD_EMERGENCY"
 CMD_NOMINAL = "CMD_NOMINAL"
@@ -20,15 +21,14 @@ class ControlSystem(QObject):
         # reader_thread.start()
         # writer_thread.start()
         kiss_thread.start()
+        kiss_thread.packet_received.connect(self.on_packet_received)
 
     def send_command(self, cmd):
         print "Issued command:", cmd
 
     def on_packet_received(self, payload):
-        data = parse_payload(payload)
+        data = parse_payload(str(payload))
         print "payload in python map", data
-        # WEB_request_thread('http://sputnik-bsu.herokuapp.com/api/v1/sensors', )
-
-        #FTP_thread()
+        push_to_website(data)
 
 

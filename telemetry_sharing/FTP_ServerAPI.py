@@ -7,7 +7,7 @@ from PyQt4 import QtCore
 from loggers.error_logger import log_the_error
 
 
-class FTP_thread(QtCore.QRunnable):
+class FTP_ServerAPI(QtCore.QRunnable):
     """This class represent a writer thread, that write data to the serial port's buffer."""
 
     def __init__(self, file_address, file_name):
@@ -15,7 +15,7 @@ class FTP_thread(QtCore.QRunnable):
         Args:
             protocol (SerialProtocol): It is a instance of a communication protocol.
         """
-        super(FTP_thread, self).__init__()
+        super(FTP_ServerAPI, self).__init__()
         self.file_address = file_address
         self.file_name = file_name
 

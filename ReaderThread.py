@@ -5,8 +5,7 @@ from PyQt4.QtCore import QThreadPool
 
 from communication_protocol_kernel import sp_kernel
 from loggers.logger import log_the_data
-from network_communication.FTP_thread import FTP_thread
-from network_communication.WEB_request_thread import WEB_request_thread
+from telemetry_sharing import WEB_RequestThread, FTP_ServerAPI
 from sound import sound
 
 
@@ -208,10 +207,10 @@ class ReaderThread(QtCore.QThread):
 
 
     def send_file_to_the_server(self, addr, name):
-        ftp_thread = FTP_thread(addr, name)
+        ftp_thread = FTP_ServerAPI(addr, name)
         QThreadPool.globalInstance().start(ftp_thread)
 
 
     def send_file_to_the_web_server(self, address, params):
-        web_thread = WEB_request_thread(address, params)
+        web_thread = WEB_RequestThread(address, params)
         QThreadPool.globalInstance().start(web_thread)
