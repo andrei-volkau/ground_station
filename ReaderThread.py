@@ -5,7 +5,7 @@ from PyQt4.QtCore import QThreadPool
 
 from communication_protocol_kernel import sp_kernel
 from loggers.logger import log_the_data
-from telemetry_sharing import WEB_RequestThread, FTP_ServerAPI
+from telemetry_sharing import FTP_ServerAPI
 from sound import sound
 
 

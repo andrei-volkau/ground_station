@@ -4,7 +4,7 @@ from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import QMainWindow, QTextCursor
 
 from ControlSystem import CMD_EMERGENCY, CMD_NOMINAL, CMD_OPERATING, CMD_ENABLE_TRANSMISSION, CMD_DISABLE_TRANSMISSION
-from gui.forms import ControlProgramForm
+from gui.ui_forms import ControlProgramForm
 
 
 class ControlProgramWindow(QMainWindow):

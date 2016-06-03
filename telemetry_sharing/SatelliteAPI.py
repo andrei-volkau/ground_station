@@ -1,11 +1,13 @@
 import sys
-
-from PyQt4 import QtCore
 import requests
+from PyQt4 import QtCore
 from loggers.error_logger import log_the_error
 
 
-class SputnikAPI(QtCore.QRunnable):
+class SatelliteAPI(QtCore.QRunnable):
+    def __init__(self):
+        super(SatelliteAPI, self).__init__()
+
     # Example: server.set_password('abc')
     def set_password(self, password):
         self.password = password
@@ -21,8 +23,8 @@ class SputnikAPI(QtCore.QRunnable):
 
     def run(self):
         try:
-            r = requests.post(self.url, data=self.data)
-            print r.content
+            webRequest = requests.post(self.url, data=self.data)
+            print "web request content is: ", webRequest.content
         except:
             error_message = "It is impossible to access to the WEB-server" + ";" + str(sys.exc_info())
             log_the_error(error_message)

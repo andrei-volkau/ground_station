@@ -90,7 +90,7 @@ class KISS_thread(QtCore.QThread):
     def read_callback(self,data):
         print "read_callback"
         kiss_data = kiss.constants.FEND + kiss.util.escape_special_codes(data) + kiss.constants.FEND
-        log_the_data("./telemetry_log_files/BSU_satellite.kss", kiss_data)
+        log_the_data("./log_files/telemetry_log_files/BSU_satellite.kss", kiss_data)
         data = data[1:]
         if len(data) < 15:
             print "bad packet"
@@ -128,10 +128,10 @@ class KISS_thread(QtCore.QThread):
             log_the_error(error_mesage)
 
             print sys.exc_info()
-            print "ax.25 is faled"
+            print "ax.25 is failed"
 
 
-    def kiss_send_packet(self,message):
+    def kiss_send_packet(self, message):
         packet=self.buildpacket("BSUIM",0,"CQ",0,0x03,0xf0,message)
         final_packet = ''
         for i in packet:

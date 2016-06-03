@@ -1,7 +1,7 @@
 from PyQt4.QtCore import QObject
 
 from KISS_thread import KISS_thread
-from PayloadParser import parse_payload
+from PayloadParser import parse_ax25_payload
 from telemetry_sharing.push_to_website import push_to_website
 
 CMD_EMERGENCY = "CMD_EMERGENCY"
@@ -27,7 +27,7 @@ class ControlSystem(QObject):
         print "Issued command:", cmd
 
     def on_packet_received(self, payload):
-        data = parse_payload(str(payload))
+        data = parse_ax25_payload(str(payload))
         print "payload in python map", data
         push_to_website(data)
 

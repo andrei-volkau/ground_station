@@ -5,7 +5,7 @@ from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import *
 
 from DataPlotter import DataPlotter
-from gui.forms import TelemetryDecoderForm
+from gui.ui_forms import TelemetryDecoderForm
 
 
 class TelemetryDecoderWindow(QMainWindow):

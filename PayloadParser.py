@@ -1,6 +1,5 @@
-__author__ = 'User'
 import json
 
-def parse_payload(payload):
+def parse_ax25_payload(payload):
     return json.loads(payload)
 
