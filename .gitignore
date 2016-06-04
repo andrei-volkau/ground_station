@@ -1,6 +1,4 @@
 *.pyc
-*.csv
-*.kss
 *.lnk
 *.iml
 /.idea
