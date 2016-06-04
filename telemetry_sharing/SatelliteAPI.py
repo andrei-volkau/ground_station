@@ -24,7 +24,9 @@ class SatelliteAPI(QtCore.QRunnable):
     def run(self):
         try:
             webRequest = requests.post(self.url, data=self.data)
-            print "web request content is: ", webRequest.content
+            resp = webRequest.content
+            if "error" in resp:
+                print "web request content is: ", resp
         except:
             error_message = "It is impossible to access to the WEB-server" + ";" + str(sys.exc_info())
             log_the_error(error_message)

@@ -5,6 +5,7 @@ from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import *
 
 from DataPlotter import DataPlotter
+from PayloadParser import *
 from gui.ui_forms import TelemetryDecoderForm
 
 
@@ -15,8 +16,6 @@ class TelemetryDecoderWindow(QMainWindow):
     """
 
     graph_windows = {}
-    column_index = {'time': 0, 'CPU_temperature': 1, 'CPU_usage': 2, 'RAM_usage': 3,
-                    'payload_module_temperature': 1, 'payload_module_humidity': 2}
 
     def __init__(self, control_system):
         QMainWindow.__init__(self)
@@ -40,6 +39,10 @@ class TelemetryDecoderWindow(QMainWindow):
                      self.plot_onboard_computer_CPU_temperature)
         self.connect(self.ui_main_window.RAM_usage_checkBox, SIGNAL("stateChanged(int)"),
                      self.plot_onboard_computer_RAM_usage)
+        self.connect(self.ui_main_window.HDD_usage_checkBox, SIGNAL("stateChanged(int)"),
+                     self.plot_onboard_computer_HDD_usage)
+        self.connect(self.ui_main_window.CPU_plate_temp_checkBox, SIGNAL("stateChanged(int)"),
+                     self.plot_onboard_computer_HDD_usage)
 
         # self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
         #              self.plot_payload_module_temperature)
@@ -67,35 +70,38 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
     def plot_onboard_computer_CPU_usage(self, state):
-        self.toggle_plot(state, "Загруженность 1-го ядра ЦП ", self.data_plotter.get_onboard_computer_CPU_usage_plot)
+        self.toggle_plot(state, "Intel Atom CPU usage of first core", self.data_plotter.get_onboard_computer_CPU_usage_plot)
 
     def plot_onboard_computer_CPU_2_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_usage_plot)
+        self.toggle_plot(state, "Intel Atom CPU usage of second core", self.data_plotter.get_onboard_computer_CPU_usage_plot)
 
     def plot_onboard_computer_CPU_temperature(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_temperature_plot)
+        self.toggle_plot(state, "Chip internal temperature of Intel Atom CPU", self.data_plotter.get_onboard_computer_CPU_temperature_plot)
 
     def plot_onboard_computer_RAM_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_RAM_usage_plot)
+        self.toggle_plot(state, "RAM usage", self.data_plotter.get_onboard_computer_RAM_usage_plot)
 
-    def on_payload_received(self, linearPayload):
-        self.ui_main_window.undecoded_data_textEdit.append(str(linearPayload))
+    def plot_onboard_computer_HDD_usage(self, state):
+        self.toggle_plot(state, "HDD usage", self.data_plotter.get_onboard_computer_HDD_usage_plot)
+
+    def on_payload_received(self, payload):
+        self.ui_main_window.undecoded_data_textEdit.append(str(payload))
         self.ui_main_window.undecoded_data_textEdit.append("----------------------------------------------------")
 
-        self.ui_main_window.CPU_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_cpu_0"]))
-        self.ui_main_window.CPU_usage_2_lcdNumber.display(str(linearPayload["tel_os_info.py_cpu_1"]))
-        self.ui_main_window.CPU_temperature_lcdNumber.display(str(linearPayload["tel_cpu_temp_c"]))
-        self.ui_main_window.RAM_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_ram"]))
-        self.ui_main_window.HDD_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_disk"]))
-        self.ui_main_window.CPU_plate_temp_lcdNumber.display(str(linearPayload["tel_cpu_temp_p"]))
+        self.ui_main_window.CPU_usage_lcdNumber.display(str(payload[SENSOR_OS_CPU0]["val"]))
+        self.ui_main_window.CPU_usage_2_lcdNumber.display(str(payload[SENSOR_OS_CPU1]["val"]))
+        self.ui_main_window.CPU_temperature_lcdNumber.display(str(payload[SENSOR_CPU_TEMP]["val"]))
+        self.ui_main_window.RAM_usage_lcdNumber.display(str(payload[SENSOR_OS_RAM]["val"]))
+        self.ui_main_window.HDD_usage_lcdNumber.display(str(payload[SENSOR_OS_DISK]["val"]))
+        self.ui_main_window.CPU_plate_temp_lcdNumber.display(str(payload[SENSOR_BOARD_TEMP]["val"]))
 
-        self.ui_main_window.solar_sensor_1_lcdNumber.display(str(linearPayload["tel_light_1"]))
-        self.ui_main_window.solar_sensor_2_lcdNumber.display(str(linearPayload["tel_light_2"]))
-        self.ui_main_window.solar_sensor_3_lcdNumber.display(str(linearPayload["tel_light_3"]))
-        self.ui_main_window.solar_sensor_4_lcdNumber.display(str(linearPayload["tel_light_4"]))
-        self.ui_main_window.magnetometer_x_lcdNumber.display(str(linearPayload["tel_hmc5883l_x"]))
-        self.ui_main_window.magnetometer_y_lcdNumber.display(str(linearPayload["tel_hmc5883l_y"]))
-        self.ui_main_window.magnetometer_z_lcdNumber.display(str(linearPayload["tel_hmc5883l_z"]))
-        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(str(linearPayload["tel_ms5611_temp"]))
+        self.ui_main_window.solar_sensor_1_lcdNumber.display(str(payload[SENSOR_LIGHT1]["val"]))
+        self.ui_main_window.solar_sensor_2_lcdNumber.display(str(payload[SENSOR_LIGHT2]["val"]))
+        self.ui_main_window.solar_sensor_3_lcdNumber.display(str(payload[SENSOR_LIGHT3]["val"]))
+        self.ui_main_window.solar_sensor_4_lcdNumber.display(str(payload[SENSOR_LIGHT4]["val"]))
+        self.ui_main_window.magnetometer_x_lcdNumber.display(str(payload[SENSOR_MAGNET_X]["val"]))
+        self.ui_main_window.magnetometer_y_lcdNumber.display(str(payload[SENSOR_MAGNET_Y]["val"]))
+        self.ui_main_window.magnetometer_z_lcdNumber.display(str(payload[SENSOR_MAGNET_Z]["val"]))
+        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(str(payload[SENSOR_MAGNET_TEMP]["val"]))
 
-        self.ui_main_window.payload_temperature_lcdNumber.display(str(linearPayload["tel_ds1621"]))
+        self.ui_main_window.payload_temperature_lcdNumber.display(str(payload[SENSOR_PAYLOAD_TEMP]["val"]))

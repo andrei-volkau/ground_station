@@ -3,7 +3,7 @@ from BarChart import BarChart
 import csv
 import datetime
 from PayloadParser import get_category, SENSOR_TIMESTAMP, SENSOR_CPU_TEMP, SENSOR_OS_CPU0, SENSOR_OS_RAM, \
-    SENSOR_PAYLOAD_TEMP
+    SENSOR_PAYLOAD_TEMP, SENSOR_OS_CPU1, SENSOR_OS_DISK
 from telemetry_sharing.push_to_csv import get_csv_filename, FIELD_NAMES
 
 
@@ -51,6 +51,10 @@ class DataPlotter(QObject):
         data = self.get_data_for_plotting(SENSOR_OS_CPU0)
         return BarChart("Intel Atom CPU usage of first core", "Usage, %", data)
 
+    def get_onboard_computer_CPU_usage_plot(self):
+        data = self.get_data_for_plotting(SENSOR_OS_CPU1)
+        return BarChart("Intel Atom CPU usage of second core", "Usage, %", data)
+
     def get_onboard_computer_CPU_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_CPU_TEMP)
         return BarChart("Chip internal temperature of Intel Atom CPU",
@@ -59,6 +63,10 @@ class DataPlotter(QObject):
     def get_onboard_computer_RAM_usage_plot(self):
         data = self.get_data_for_plotting(SENSOR_OS_RAM)
         return BarChart("RAM usage", "Usage, %", data)
+
+    def get_onboard_computer_HDD_usage_plot(self):
+        data = self.get_data_for_plotting(SENSOR_OS_DISK)
+        return BarChart("HDD usage", "Usage, %", data)
 
     def get_payload_module_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_PAYLOAD_TEMP)
