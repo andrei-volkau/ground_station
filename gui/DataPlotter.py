@@ -54,21 +54,21 @@ class DataPlotter(QObject):
         return BarChart("Chip supply voltage of RXQ3 transceiver", "Voltage, mV",
                         self.get_data_for_plotting(COMMUNICATION_LOG_ADR, "CPU_temperature"))
 
-    def get_on_board_computer_CPU_usage_plot(self):
+    def get_onboard_computer_CPU_usage_plot(self):
         return BarChart("Intel Atom CPU usage", "Usage, %",
                                                      self.get_data_for_plotting(ONBOARD_COMPUTER_LOG_ADR, "CPU_usage"))
 
-    def get_on_board_computer_CPU_temperature_plot(self):
+    def get_onboard_computer_CPU_temperature_plot(self):
         return BarChart("Chip internal temperature of Intel Atom CPU", "Temperature, Celsius degrees",
                              self.get_data_for_plotting(ONBOARD_COMPUTER_LOG_ADR, "CPU_temperature"))
 
-    def get_on_board_computer_RAM_usage_plot(self):
+    def get_onboard_computer_RAM_usage_plot(self):
         return BarChart("RAM usage", "Usage, %", self.get_data_for_plotting(ONBOARD_COMPUTER_LOG_ADR, "RAM_usage"))
 
     def get_payloads_humidity_plot(self):
         return BarChart("Humidity at the research module", "Humidity, %",
                                                      self.get_data_for_plotting(PAYLOAD_LOG_ADR, "payload_module_humidity"))
 
-    def get_payloads_temperature_plot(self):
+    def get_payload_module_temperature_plot(self):
         return BarChart("Temperature at the research module", "Temperature, Celsius degrees",
                              self.get_data_for_plotting(PAYLOAD_LOG_ADR, "payload_module_temperature"))

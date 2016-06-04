@@ -1,7 +1,8 @@
-from PyQt4.QtCore import QObject
+from PyQt4.QtCore import QObject, pyqtSignal
 
 from KISS_thread import KISS_thread
 from PayloadParser import parse_ax25_payload
+from telemetry_sharing.push_to_csv import push_to_csv
 from telemetry_sharing.push_to_website import push_to_website
 
 CMD_EMERGENCY = "CMD_EMERGENCY"
@@ -12,6 +13,8 @@ CMD_DISABLE_TRANSMISSION = "CMD_DISABLE_TRANSMISSION"
 
 
 class ControlSystem(QObject):
+    payload_received = pyqtSignal("PyQt_PyObject", name="payloadReceived")
+
     def __init__(self, parent):
         QObject.__init__(self, parent)
         # communication_protocol = sp_kernel.SerialProtocol()
@@ -27,8 +30,10 @@ class ControlSystem(QObject):
         print "Issued command:", cmd
 
     def on_packet_received(self, payload):
-        data = parse_ax25_payload(str(payload))
-        print "payload in python map", data
-        push_to_website(data)
+        linearPayload = parse_ax25_payload(str(payload))
+        print "payload in linear struct", linearPayload
+        self.payload_received.emit(linearPayload)
+        push_to_website(linearPayload)
+        push_to_csv(linearPayload)
 
 

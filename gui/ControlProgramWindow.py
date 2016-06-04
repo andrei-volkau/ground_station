@@ -19,13 +19,13 @@ class ControlProgramWindow(QMainWindow):
         self.ui_main_window.setupUi(self)
         self.ui_main_window.undecoded_packages_textEdit.moveCursor(QTextCursor.EndOfBlock)
 
-        self.connect(self.ui_main_window.modes_enable_emergency_mode_pushButton,
+        self.connect(self.ui_main_window.enable_emergency_mode_pushButton,
                      SIGNAL("clicked()"), self.on_enable_emergency_mode)
-        self.connect(self.ui_main_window.modes_enable_nominal_mode_pushButton,
+        self.connect(self.ui_main_window.enable_nominal_mode_pushButton,
                      SIGNAL("clicked()"), self.on_enable_nominal_mode)
-        self.connect(self.ui_main_window.modes_enable_operating_mode_pushButton,
+        self.connect(self.ui_main_window.enable_operating_mode_pushButton,
                      SIGNAL("clicked()"), self.on_enable_operating_mode)
-        self.connect(self.ui_main_window.modes_toggle_transmission_pushButton,
+        self.connect(self.ui_main_window.toggle_transmission_pushButton,
                      SIGNAL("clicked()"), self.on_toggle_transmission)
 
     def on_enable_emergency_mode(self):
@@ -38,7 +38,7 @@ class ControlProgramWindow(QMainWindow):
         self.control_system.send_command(CMD_OPERATING)
 
     def on_toggle_transmission(self):
-        if self.ui_main_window.data_handling_toggle_transmission_comboBox.currentIndex() == 0:
+        if self.ui_main_window.toggle_transmission_comboBox.currentIndex() == 0:
             self.control_system.send_command(CMD_DISABLE_TRANSMISSION)
         else:
             self.control_system.send_command(CMD_ENABLE_TRANSMISSION)

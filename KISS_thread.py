@@ -15,7 +15,9 @@ kiss_prot = None
 
 
 class KISS_thread(QtCore.QThread):
-    """This class represent a writer thread, that write data to the serial port's buffer."""
+    """
+        AX.25 Communication
+    """
     packet_received = pyqtSignal("QString", name="packetReceived")
 
     def __init__(self, control_system):
@@ -30,40 +32,6 @@ class KISS_thread(QtCore.QThread):
     def run(self):
         print "connect strted"
         self.connect()
-    # currentN = 0
-    # t1 = None
-    # bytes = 0
-    #
-    # def time_data(n):
-    #     global t1
-    #     global bytes
-    #     global currentN
-    #     if t1 == None:
-    #         t1 = time.time()
-    #     else:
-    #         bytes += n
-    #     if currentN == 100:
-    #         sec = time.time() - t1
-    #         print float(bytes) / sec, bytes, sec
-    #         exit()
-
-    # def process_packet(data):
-    #     global currentN
-    #     currentN += 1
-    #
-    #     num = int(data[:6])
-    #     if num != currentN:
-    #         print "Dropped", num - currentN
-    #     currentN = num
-    #
-    #     payload = data[6:]
-    #     size = len(payload)
-    #     ideal = "".join([chr(i % 25 + 65) for i in range(size)])
-    #     if ideal != payload:
-    #         print "Data was corrupted"
-    #         print data
-    #     print "OK", currentN
-    #     time_data(len(payload))
 
     def buildpacket(self,source,source_ssid,dest,dest_ssid,control,pid,payload):
         packet=[]

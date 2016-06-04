@@ -8,6 +8,7 @@ from DataPlotter import DataPlotter
 from gui.ui_forms import TelemetryDecoderForm
 
 
+
 class TelemetryDecoderWindow(QMainWindow):
     """
         GUI for telemetry decoder for miniaturized satellite imitator
@@ -20,6 +21,7 @@ class TelemetryDecoderWindow(QMainWindow):
     def __init__(self, control_system):
         QMainWindow.__init__(self)
         self.control_system = control_system
+        self.control_system.payload_received.connect(self.on_payload_received)
 
         self.data_plotter = DataPlotter(self)
 
@@ -28,25 +30,19 @@ class TelemetryDecoderWindow(QMainWindow):
 
         self.ui_main_window.undecoded_data_textEdit.moveCursor(QtGui.QTextCursor.End)
 
-        self.connect(self.ui_main_window.communication_rssi_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_communication_rssi)
-        self.connect(self.ui_main_window.communication_temperature_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_communication_temperature)
-        self.connect(self.ui_main_window.communication_voltage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_communication_voltage)
 
-        self.connect(self.ui_main_window.onboard_computer_CPU_usage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_on_board_computer_CPU_usage)
-        self.connect(self.ui_main_window.onboard_computer_CPU_temperature_checkBox,
+        self.connect(self.ui_main_window.CPU_usage_checkBox, SIGNAL("stateChanged(int)"),
+                     self.plot_onboard_computer_CPU_usage)
+        self.connect(self.ui_main_window.CPU_usage_2_checkBox, SIGNAL("stateChanged(int)"),
+                     self.plot_onboard_computer_CPU_2_usage)
+        self.connect(self.ui_main_window.CPU_temperature_checkBox,
                      SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_on_board_computer_CPU_temperature)
-        self.connect(self.ui_main_window.onboard_computer_RAM_usage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_on_board_computer_RAM_usage)
+                     self.plot_onboard_computer_CPU_temperature)
+        self.connect(self.ui_main_window.RAM_usage_checkBox, SIGNAL("stateChanged(int)"),
+                     self.plot_onboard_computer_RAM_usage)
 
-        self.connect(self.ui_main_window.payloads_humidity_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_payloads_humidity)
-        self.connect(self.ui_main_window.payloads_temperature_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_bar_chart_for_payloads_temperature)
+        # self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
+        #              self.plot_payload_module_temperature)
 
     def toggle_plot(self, state, name, func):
         """
@@ -69,26 +65,37 @@ class TelemetryDecoderWindow(QMainWindow):
             if plot is not None:
                 plot.close()
 
-    def plot_bar_chart_for_communication_rssi(self, state):
-        self.toggle_plot(state, "rssi", self.data_plotter.get_rssi_plot)
 
-    def plot_bar_chart_for_communication_temperature(self, state):
-        self.toggle_plot(state, "rxq3_temp", self.data_plotter.get_rxq3_temperature_plot)
+    def plot_onboard_computer_CPU_usage(self, state):
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_usage_plot)
 
-    def plot_bar_chart_for_communication_voltage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_rxq3_voltage_plot)
+    def plot_onboard_computer_CPU_2_usage(self, state):
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_usage_plot)
 
-    def plot_bar_chart_for_on_board_computer_CPU_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_CPU_usage_plot)
+    def plot_onboard_computer_CPU_temperature(self, state):
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_temperature_plot)
 
-    def plot_bar_chart_for_on_board_computer_CPU_temperature(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_CPU_temperature_plot)
+    def plot_onboard_computer_RAM_usage(self, state):
+        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_RAM_usage_plot)
 
-    def plot_bar_chart_for_on_board_computer_RAM_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_on_board_computer_RAM_usage_plot)
+    def on_payload_received(self, linearPayload):
+        self.ui_main_window.undecoded_data_textEdit.append(str(linearPayload))
+        self.ui_main_window.undecoded_data_textEdit.append("----------------------------------------------------")
 
-    def plot_bar_chart_for_payloads_humidity(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_payloads_humidity_plot)
+        self.ui_main_window.CPU_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_cpu_0"]))
+        self.ui_main_window.CPU_usage_2_lcdNumber.display(str(linearPayload["tel_os_info.py_cpu_1"]))
+        self.ui_main_window.CPU_temperature_lcdNumber.display(str(linearPayload["tel_cpu_temp_c"]))
+        self.ui_main_window.RAM_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_ram"]))
+        self.ui_main_window.HDD_usage_lcdNumber.display(str(linearPayload["tel_os_info.py_disk"]))
+        self.ui_main_window.CPU_plate_temp_lcdNumber.display(str(linearPayload["tel_cpu_temp_p"]))
 
-    def plot_bar_chart_for_payloads_temperature(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_payloads_temperature_plot)
+        self.ui_main_window.solar_sensor_1_lcdNumber.display(str(linearPayload["tel_light_1"]))
+        self.ui_main_window.solar_sensor_2_lcdNumber.display(str(linearPayload["tel_light_2"]))
+        self.ui_main_window.solar_sensor_3_lcdNumber.display(str(linearPayload["tel_light_3"]))
+        self.ui_main_window.solar_sensor_4_lcdNumber.display(str(linearPayload["tel_light_4"]))
+        self.ui_main_window.magnetometer_x_lcdNumber.display(str(linearPayload["tel_hmc5883l_x"]))
+        self.ui_main_window.magnetometer_y_lcdNumber.display(str(linearPayload["tel_hmc5883l_y"]))
+        self.ui_main_window.magnetometer_z_lcdNumber.display(str(linearPayload["tel_hmc5883l_z"]))
+        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(str(linearPayload["tel_ms5611_temp"]))
+
+        self.ui_main_window.payload_temperature_lcdNumber.display(str(linearPayload["tel_ds1621"]))
