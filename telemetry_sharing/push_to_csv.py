@@ -1,69 +1,71 @@
 import csv
 
-from PayloadParser import CAT_ELECTRIC_POWER_SYS, CAT_COMMUNICATION_SYS, CAT_ONBOARD_COMP_SYS, CAT_PAYLOAD_SYS, \
-    CAT_ATTITUDE_CONTROL_SYS
+from PayloadParser import *
 
 
 FIELD_NAMES = {
-    CAT_ELECTRIC_POWER_SYS: [],
-    CAT_COMMUNICATION_SYS: [],
+    CAT_ELECTRIC_POWER_SYS: [
+        SENSOR_TIMESTAMP
+    ],
+    CAT_COMMUNICATION_SYS: [
+        SENSOR_TIMESTAMP
+    ],
     CAT_ONBOARD_COMP_SYS: [
-        'tel_os_info.py_cpu_0',
-        'tel_os_info.py_cpu_1',
-        'tel_cpu_temp_c',
-        'tel_os_info.py_ram',
-        'tel_os_info.py_disk',
-        'tel_cpu_temp_p'
+        SENSOR_TIMESTAMP,
+        SENSOR_OS_CPU0,
+        SENSOR_OS_CPU1,
+        SENSOR_CPU_TEMP,
+        SENSOR_OS_RAM,
+        SENSOR_OS_DISK,
+        SENSOR_BOARD_TEMP
     ],
     CAT_ATTITUDE_CONTROL_SYS: [
-        'tel_light_1',
-        'tel_light_2',
-        'tel_light_3',
-        'tel_light_4',
-        'tel_hmc5883l_x',
-        'tel_hmc5883l_y',
-        'tel_hmc5883l_z',
-        'tel_ms5611_temp'
+        SENSOR_TIMESTAMP,
+        SENSOR_LIGHT1,
+        SENSOR_LIGHT2,
+        SENSOR_LIGHT3,
+        SENSOR_LIGHT4,
+        SENSOR_MAGNET_X,
+        SENSOR_MAGNET_Y,
+        SENSOR_MAGNET_Z,
+        SENSOR_MAGNET_TEMP
     ],
     CAT_PAYLOAD_SYS: [
-        'tel_ds1621'
+        SENSOR_TIMESTAMP,
+        SENSOR_PAYLOAD_TEMP
     ]
 }
 
+def get_csv_filename(category):
+    return "./log_files/telemetry_log_files/" + category + ".csv"
 
-def write_to_csv(cat, superLinearTelemetry):
+
+def write_to_csv(time, cat, telemetry):
+    print "write_to_csv", time, cat, telemetry
     if cat not in FIELD_NAMES:
         return
     fieldnames = FIELD_NAMES[cat]
-    with open("./log_files/telemetry_log_files/" + cat + '.csv', 'a') as csvfile:
+    with open(get_csv_filename(cat), 'a') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         tel = {}
-        for key in superLinearTelemetry:
+        tel[SENSOR_TIMESTAMP] = time
+        for key in telemetry:
             if key in fieldnames:
-                tel[key] = superLinearTelemetry[key]
+                tel[key] = telemetry[key]
+        if len(tel) == 0:
+            return
         writer.writerow(tel)
 
 
-def write_2(linearTelemetry):
-    t = {}
-    for key in linearTelemetry:
-        cat = linearTelemetry[key][0]
-        val = linearTelemetry[key][1]
-        if cat in t:
-            t[cat][key] = val
+def push_to_csv(payload):
+    time = payload[SENSOR_TIMESTAMP]["val"]
+    telemetry = {}
+    for key in payload:
+        cat = payload[key]["cat"]
+        val = payload[key]["val"]
+        if cat in telemetry:
+            telemetry[cat][key] = val
         else:
-            t[cat] = {key: val}
-    for cat in t:
-        print t[cat]
-        write_to_csv(cat, t[cat])
-
-
-def push_to_csv(linearPayload):
-    for key in linearPayload:
-        category = linearPayload[key][0]
-        value = linearPayload[key][1]
-        write_2(linearPayload)
-    print "ftp ", linearPayload
-
-
-
+            telemetry[cat] = {key: val}
+    for cat in telemetry:
+        write_to_csv(time, cat, telemetry[cat])

@@ -17,7 +17,7 @@ class BarChart(QtGui.QDialog):
             ordinate_name (str): It is a ordinate name of a bar chart.
             data_for_plotting (list): It is a data for plotting of a bar chart.
         """
-        super(BarChart, self).__init__(parent)
+        QtGui.QDialog.__init__(self, parent)
         self.data = data_for_plotting
         self.graph_name = bar_chart_name
         self.ordinate_name = ordinate_name

@@ -1,6 +1,6 @@
 from PyQt4.QtCore import QThreadPool
 
-from PayloadParser import CAT_TIME
+from PayloadParser import SENSOR_TIMESTAMP, CAT_NONE
 
 from telemetry_sharing.SatelliteAPI import SatelliteAPI
 
@@ -9,13 +9,13 @@ WEB_HOST = 'sputnik-bsu.herokuapp.com'
 WEB_PASSWORD = 'abc'
 
 
-def push_to_website(linearPayload):
-    time = linearPayload["tel_Timestamp"][1]
-    for key in linearPayload:
-        category = linearPayload[key][0]
-        value = linearPayload[key][1]
+def push_to_website(payload):
+    time = payload[SENSOR_TIMESTAMP]["val"]
+    for key in payload:
+        category = payload[key]["cat"]
+        value = payload[key]["val"]
 
-        if category == CAT_TIME:
+        if category == CAT_NONE:
             continue
 
         api = SatelliteAPI()

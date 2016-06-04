@@ -67,7 +67,7 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
     def plot_onboard_computer_CPU_usage(self, state):
-        self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_usage_plot)
+        self.toggle_plot(state, "Загруженность 1-го ядра ЦП ", self.data_plotter.get_onboard_computer_CPU_usage_plot)
 
     def plot_onboard_computer_CPU_2_usage(self, state):
         self.toggle_plot(state, "rxq3_voltage", self.data_plotter.get_onboard_computer_CPU_usage_plot)

@@ -29,11 +29,11 @@ class ControlSystem(QObject):
     def send_command(self, cmd):
         print "Issued command:", cmd
 
-    def on_packet_received(self, payload):
-        linearPayload = parse_ax25_payload(str(payload))
-        print "payload in linear struct", linearPayload
-        self.payload_received.emit(linearPayload)
-        push_to_website(linearPayload)
-        push_to_csv(linearPayload)
+    def on_packet_received(self, packet):
+        payload = parse_ax25_payload(str(packet))
+        print "payload in linear struct", payload
+        self.payload_received.emit(payload)
+        push_to_website(payload)
+        push_to_csv(payload)
 
 
