@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>719</width>
+    <height>723</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Telemetry decoder for miniaturized satellite simulator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="undecoded_data_from_packages_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Содержимое пришедших пакетов телеметрической информации:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="undecoded_data_textEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="simulator_systems_condition_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Параметры систем имитатора СМКА:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="simulator_systems_condition_tabWidget">
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="electrical_power_tab">
+       <attribute name="title">
+        <string>Электроснабжение</string>
+       </attribute>
+       <widget class="QLabel" name="electrical_power_solar_batteries_parameters_label">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>380</y>
+          <width>268</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Parameters of solar baterries: </string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="communication_tab">
+       <attribute name="title">
+        <string>Связь</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="onboard_computer_tab">
+       <attribute name="title">
+        <string>Бортовой компьютер</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="onboard_computer_parameters_gridLayout">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="CPU_usage_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Загруженность 1-го ядра ЦП </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLCDNumber" name="CPU_temperature_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+            <property name="digitCount">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="CPU_percent_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="CPU_temperature_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Температура ЦП  </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLCDNumber" name="CPU_usage_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+            <property name="digitCount">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="CPU_usage_2_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLCDNumber" name="CPU_usage_2_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLCDNumber" name="RAM_usage_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+            <property name="digitCount">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="RAM_usage_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Загруженность ОЗУ</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="CPU_celsious_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string> °C</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLabel" name="RAM_percent_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="CPU_usage_2_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Загруженность 2-го ядра ЦП </string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="HDD_usage_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Объём занятой памяти жёсткого диска</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLCDNumber" name="HDD_usage_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="HDD_usage_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="CPU_plate_temp_checkBox">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Температура платы процессорного модуля</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QLabel" name="CPU_plate_temp_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string> °C</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLCDNumber" name="CPU_plate_temp_lcdNumber">
+            <property name="styleSheet">
+             <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="attitude_control_tab">
+       <attribute name="title">
+        <string>Ориентация</string>
+       </attribute>
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>351</width>
+          <height>136</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="onboard_computer_parameters_gridLayout_2">
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="solar_sensor_2_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+           <property name="digitCount">
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLCDNumber" name="solar_sensor_4_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="solar_sensor_2_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>лк</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="solar_sensor_4_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Солнечный датчик №4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="solar_sensor_4_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>лк</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="solar_sensor_3_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Солнечный датчик №3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="solar_sensor_3_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+           <property name="digitCount">
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="solar_sensor_3_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>лк</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="solar_sensor_1_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>лк</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="solar_sensor_1_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+           <property name="digitCount">
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="solar_sensor_1_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Солнечный датчик №1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="solar_sensor_2_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Солнечный датчик №2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>519</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="accelerometer_gyroscope_temperature_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="accelerometer_gyroscope_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Температура аскелерометра и гироскопа</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="accelerometer_gyroscope_temperature_lcdNumberlabel">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string> °C</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>10</y>
+          <width>341</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="magnetometer_x_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Магнитометр, X </string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="magnetometer_z_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="magnetometer_y_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Тл</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="magnetometer_x_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="magnetometer_z_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Магнитометр, Z</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="magnetometer_z_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Тл</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="magnetometer_y_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="magnetometer_x_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Тл</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="magnetometer_y_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Магнитометр, Y</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="payloads_tab">
+       <attribute name="title">
+        <string>Научная аппаратура</string>
+       </attribute>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>361</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="parameters_gridLayout">
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="payload_temperature_checkBox">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Датчик температуры </string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="payload_temperature_lcdNumber">
+           <property name="styleSheet">
+            <string notr="true">QLCDNumber{
+    color: rgb(255, 255, 255);    
+    background-color: rgb(133, 113, 255);
+}</string>
+           </property>
+           <property name="digitCount">
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="payload_temperature_celsious_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 18pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string> °C</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="parameters_research_module_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Параметры научного моудля :</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="actionOpen">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

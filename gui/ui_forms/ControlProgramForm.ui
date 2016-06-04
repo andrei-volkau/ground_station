@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>971</width>
+    <height>603</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Satellite simulator control program</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="0">
+     <widget class="QLabel" name="panel_for_manual_sending_of_commands_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Панель посыла команд в ручном режиме:</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTextEdit" name="undecoded_packages_textEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="undecoded_data_from_packages_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Панель отображения содержимого ответных пакетов:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QTabWidget" name="modes_of_operation_tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <property name="elideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="modes_of_operation_tab">
+       <attribute name="title">
+        <string>Переключение режимов работы спутника</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="modes_choosing_of_the_operation_mode_gridLayout">
+          <item row="2" column="1">
+           <widget class="QPushButton" name="enable_nominal_mode_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="enable_operating_mode_label">
+            <property name="text">
+             <string>Перейти в режим работы с научной аппаратурой </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="enable_operating_mode_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="enable_emergency_mode_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="enable_emergency_mode_label">
+            <property name="text">
+             <string>Перейти в аварийный режим работы</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="enable_nominal_mode_label">
+            <property name="text">
+             <string>Перейти в штатный режим работы</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="enable_minimal_mode_label">
+            <property name="text">
+             <string>Перейти в режим работы с минимальным энергопотреблением </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="enable_minimal_mode_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="other_commands_tab">
+       <attribute name="title">
+        <string>Остальные команды</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="radio_module_settings_gridLayout">
+          <item row="2" column="1">
+           <widget class="QComboBox" name="set_channel_number_comboBox">
+            <item>
+             <property name="text">
+              <string>1)   433.15 - 433.25  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2)   433.25 - 433.35  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>3)   433.25 - 433.35  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>4)   433.45 - 433.55 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>5)   433.55 - 433.65 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>6)   433.65 - 433.75 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>7)   433.75 - 433.85 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>8)   433.85 - 433.95 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>9)   433.95 - 434.05 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10) 434.05 - 434.15 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>11) 434.15 - 434.25 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>12) 434.25 - 434.35 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>13) 434.35 - 434.45 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>14) 434.45 - 434.55 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>15) 434.55 - 434.65 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>16) 434.65 - 434.75 MHz</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="set_channel_number_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="toggle_transmission_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="radio_module_settings_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Настройки радиомодуля: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="toggle_transmission_comboBox">
+            <item>
+             <property name="text">
+              <string>Выключить</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Включить</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="set_channel_number_label">
+            <property name="text">
+             <string>Установить канал</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="toggle_transmission_label">
+            <property name="text">
+             <string>Вкл/Выкл вещание в эфир</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="separation_label">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="real_time_clock_settings_gridLayout">
+          <item row="2" column="1">
+           <widget class="QPushButton" name="real_time_clock_settings_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QDateTimeEdit" name="real_time_clock_settings_dateTimeEdit"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="other_commands_real_time_clock_settings_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string> Установка даты и времени на имитаторе СМКА:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <layout class="QGridLayout" name="command_eval_date_time_gridLayout">
+      <item row="1" column="0">
+       <widget class="QDateTimeEdit" name="command_eval_date_time_dateTimeEdit"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="command_eval_date_time_checkBox">
+        <property name="text">
+         <string>Выполнить команду сразу при получении</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="command_eval_date_time_label">
+        <property name="text">
+         <string>Установить время и дату выполнения посылаемой команды или выполнить команду сразу при получении:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <action name="actionOpen">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
