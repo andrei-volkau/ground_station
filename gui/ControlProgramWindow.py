@@ -11,7 +11,6 @@ class ControlProgramWindow(QMainWindow):
     """
         GUI for control program for miniaturized satellite imitator
     """
-
     def __init__(self, control_system):
         QMainWindow.__init__(self)
         self.control_system = control_system
