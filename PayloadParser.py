@@ -5,10 +5,11 @@ CAT_ELECTRIC_POWER_SYS = 'electric_power_sys'
 CAT_COMMUNICATION_SYS = 'communication_sys'
 CAT_ONBOARD_COMP_SYS = 'onboard_comp_sys'
 CAT_ATTITUDE_CONTROL_SYS = 'attitude_control_sys'
-CAT_PAYLOAD_SYS = 'payload_sys'
+CAT_PAYLOAD_SYS = ' ' \
+                  'payload_sys'
 
 SENSOR_TIMESTAMP = 'tel_Timestamp'
-SENSOR_OS_CPU0 = 'tel_os_info.py_cpu_0'
+SENSOR_OS_CPU0 = 'tel_os_info.p `y_cpu_0'
 SENSOR_OS_CPU1 = 'tel_os_info.py_cpu_1'
 SENSOR_CPU_TEMP = 'tel_cpu_temp_c'
 SENSOR_OS_RAM = 'tel_os_info.py_ram'

@@ -84,24 +84,29 @@ class TelemetryDecoderWindow(QMainWindow):
     def plot_onboard_computer_HDD_usage(self, state):
         self.toggle_plot(state, "HDD usage", self.data_plotter.get_onboard_computer_HDD_usage_plot)
 
+    def get_value(self, payload, sensor):
+        if sensor in payload:
+            return str(payload[sensor]["val"])
+        return ""
+
     def on_payload_received(self, payload):
         self.ui_main_window.undecoded_data_textEdit.append(str(payload))
         self.ui_main_window.undecoded_data_textEdit.append("----------------------------------------------------")
 
-        self.ui_main_window.CPU_usage_lcdNumber.display(str(payload[SENSOR_OS_CPU0]["val"]))
-        self.ui_main_window.CPU_usage_2_lcdNumber.display(str(payload[SENSOR_OS_CPU1]["val"]))
-        self.ui_main_window.CPU_temperature_lcdNumber.display(str(payload[SENSOR_CPU_TEMP]["val"]))
-        self.ui_main_window.RAM_usage_lcdNumber.display(str(payload[SENSOR_OS_RAM]["val"]))
-        self.ui_main_window.HDD_usage_lcdNumber.display(str(payload[SENSOR_OS_DISK]["val"]))
-        self.ui_main_window.CPU_plate_temp_lcdNumber.display(str(payload[SENSOR_BOARD_TEMP]["val"]))
+        self.ui_main_window.CPU_usage_lcdNumber.display(self.get_value(payload, SENSOR_OS_CPU0))
+        self.ui_main_window.CPU_usage_2_lcdNumber.display(self.get_value(payload, SENSOR_OS_CPU1))
+        self.ui_main_window.CPU_temperature_lcdNumber.display(self.get_value(payload, SENSOR_CPU_TEMP))
+        self.ui_main_window.RAM_usage_lcdNumber.display(self.get_value(payload, SENSOR_OS_RAM))
+        self.ui_main_window.HDD_usage_lcdNumber.display(self.get_value(payload, SENSOR_OS_DISK))
+        self.ui_main_window.CPU_plate_temp_lcdNumber.display(self.get_value(payload, SENSOR_BOARD_TEMP))
 
-        self.ui_main_window.solar_sensor_1_lcdNumber.display(str(payload[SENSOR_LIGHT1]["val"]))
-        self.ui_main_window.solar_sensor_2_lcdNumber.display(str(payload[SENSOR_LIGHT2]["val"]))
-        self.ui_main_window.solar_sensor_3_lcdNumber.display(str(payload[SENSOR_LIGHT3]["val"]))
-        self.ui_main_window.solar_sensor_4_lcdNumber.display(str(payload[SENSOR_LIGHT4]["val"]))
-        self.ui_main_window.magnetometer_x_lcdNumber.display(str(payload[SENSOR_MAGNET_X]["val"]))
-        self.ui_main_window.magnetometer_y_lcdNumber.display(str(payload[SENSOR_MAGNET_Y]["val"]))
-        self.ui_main_window.magnetometer_z_lcdNumber.display(str(payload[SENSOR_MAGNET_Z]["val"]))
-        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(str(payload[SENSOR_MAGNET_TEMP]["val"]))
+        self.ui_main_window.solar_sensor_1_lcdNumber.display(self.get_value(payload, SENSOR_LIGHT1))
+        self.ui_main_window.solar_sensor_2_lcdNumber.display(self.get_value(payload, SENSOR_LIGHT2))
+        self.ui_main_window.solar_sensor_3_lcdNumber.display(self.get_value(payload, SENSOR_LIGHT3))
+        self.ui_main_window.solar_sensor_4_lcdNumber.display(self.get_value(payload, SENSOR_LIGHT4))
+        self.ui_main_window.magnetometer_x_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_X))
+        self.ui_main_window.magnetometer_y_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Y))
+        self.ui_main_window.magnetometer_z_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Z))
+        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_TEMP))
 
-        self.ui_main_window.payload_temperature_lcdNumber.display(str(payload[SENSOR_PAYLOAD_TEMP]["val"]))
+        self.ui_main_window.payload_temperature_lcdNumber.display(self.get_value(payload, SENSOR_PAYLOAD_TEMP))

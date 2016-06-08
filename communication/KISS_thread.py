@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-from PyQt4.QtCore import QThread, pyqtSignal
+from PyQt4.QtCore import QThread, pyqtSignal, QThreadPool
 
 import kiss
 import kiss.constants
@@ -8,10 +8,14 @@ import kiss.util
 from PyQt4 import QtCore
 
 import config
+from communication.KissWriter import KissWriter
 from loggers.error_logger import log_the_error
 from loggers.logger import log_the_data
+import time
+import json
 
-kiss_prot = None
+LOCAL_SSID = "BSUGS "
+REMOTE_SSID = "BSUIM "
 
 
 class KISS_thread(QtCore.QThread):
@@ -31,29 +35,7 @@ class KISS_thread(QtCore.QThread):
 
     def run(self):
         print "connect strted"
-        self.connect()
-
-    def buildpacket(self,source,source_ssid,dest,dest_ssid,control,pid,payload):
-        packet=[]
-        for j in range(6):
-            if j<len(dest):
-                c=ord(dest[j])
-                packet.append(c<<1)
-            else:
-                packet.append(0x40)
-        packet.append(0x60|(dest_ssid<<1))
-        for j in range(6):
-            if j<len(source):
-                c=ord(source[j])
-                packet.append(c<<1)
-            else:
-                packet.append(0x40)
-        packet.append(0xe1|(source_ssid<<1))
-        packet.append(control)
-        packet.append(pid)
-        for j in range(len(payload)):
-            packet.append(ord(payload[j]))
-        return packet
+        self.kiss_connect()
 
     def read_callback(self,data):
         print "read_callback, packet length", len(data)
@@ -67,7 +49,7 @@ class KISS_thread(QtCore.QThread):
         #print "Destination", dest
         src = "".join([chr(ord(c)>>1) for c in data[7:13]])
         #print "Source", src
-        if dest != "BSUGS ":
+        if dest != LOCAL_SSID:
             print "packet not for us"
             return
         start = 16
@@ -84,13 +66,12 @@ class KISS_thread(QtCore.QThread):
         # self.control_system.on_packet_received(payload)
         self.packet_received.emit(payload)
 
-    def connect(self):
+    def kiss_connect(self):
         try:
             print "connect"
-            global kiss_prot
-            kiss_prot = kiss.KISS(port=config.kiss_serial_name, speed=config.kiss_baudrate)
-            kiss_prot.start()
-            kiss_prot.read(self.read_callback)
+            self.kiss_prot = kiss.KISS(port=config.kiss_serial_name, speed=config.kiss_baudrate)
+            self.kiss_prot.start()
+            self.kiss_prot.read(self.read_callback)
         except:
             error_mesage = "Could not open port for CC430 transceiver." + ";" + str(sys.exc_info())
             log_the_error(error_mesage)
@@ -99,14 +80,11 @@ class KISS_thread(QtCore.QThread):
             print "ax.25 is failed"
 
 
-    def kiss_send_packet(self, message):
-        packet=self.buildpacket("BSUIM",0,"CQ",0,0x03,0xf0,message)
-        final_packet = ''
-        for i in packet:
-            final_packet += chr(i)
-        print packet
-        try:
-            global kiss_prot
-            kiss_prot.write(final_packet)
-        except:
-            self.connect()
+    def send_command(self, name, arg = None):
+        data = {"Timestamp": int(time.time()), "Cmd": name, "Arg": arg}
+        json_data = json.dumps(data)
+        writer = KissWriter(self.kiss_prot)
+        writer.set_destination(REMOTE_SSID)
+        writer.set_data(json_data)
+        QThreadPool.globalInstance().start(writer)
+

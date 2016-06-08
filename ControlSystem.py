@@ -1,11 +1,11 @@
 from PyQt4.QtCore import QObject, pyqtSignal
 
-from KISS_thread import KISS_thread
+from communication.KISS_thread import KISS_thread
 from PayloadParser import parse_ax25_payload
 from telemetry_sharing.push_to_csv import push_to_csv
 from telemetry_sharing.push_to_website import push_to_website
 
-CMD_EMERGENCY = "CMD_EMERGENCY"
+CMD_MINIMAL = "CMD_MINIMAL"
 CMD_NOMINAL = "CMD_NOMINAL"
 CMD_OPERATING = "CMD_OPERATING"
 CMD_ENABLE_TRANSMISSION = "CMD_ENABLE_TRANSMISSION"
@@ -20,14 +20,17 @@ class ControlSystem(QObject):
         # communication_protocol = sp_kernel.SerialProtocol()
         # writer_thread = WriterThread.WriterThread(self, communication_protocol)
         # reader_thread = ReaderThread.ReaderThread(self, communication_protocol)
-        kiss_thread = KISS_thread(self)
+        self.kiss_thread = KISS_thread(self)
         # reader_thread.start()
         # writer_thread.start()
-        kiss_thread.start()
-        kiss_thread.packet_received.connect(self.on_packet_received)
+        self.kiss_thread.start()
+        self.kiss_thread.packet_received.connect(self.on_packet_received)
 
     def send_command(self, cmd):
         print "Issued command:", cmd
+
+        self.kiss_thread.send_command(cmd)
+
 
     def on_packet_received(self, packet):
         payload = parse_ax25_payload(str(packet))

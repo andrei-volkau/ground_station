@@ -45,6 +45,27 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <layout class="QGridLayout" name="command_eval_date_time_gridLayout">
+      <item row="1" column="0">
+       <widget class="QDateTimeEdit" name="command_eval_date_time_dateTimeEdit"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="command_eval_date_time_checkBox">
+        <property name="text">
+         <string>Выполнить команду сразу при получении</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="command_eval_date_time_label">
+        <property name="text">
+         <string>Установить время и дату выполнения посылаемой команды или выполнить команду сразу при получении:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="4" column="0">
      <widget class="QTabWidget" name="modes_of_operation_tabWidget">
       <property name="minimumSize">
@@ -63,7 +84,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -79,7 +100,7 @@
       </property>
       <widget class="QWidget" name="modes_of_operation_tab">
        <attribute name="title">
-        <string>Переключение режимов работы спутника</string>
+        <string>Режимы работы</string>
        </attribute>
        <layout class="QFormLayout" name="formLayout_2">
         <property name="fieldGrowthPolicy">
@@ -87,56 +108,42 @@
         </property>
         <item row="0" column="0">
          <layout class="QGridLayout" name="modes_choosing_of_the_operation_mode_gridLayout">
-          <item row="2" column="1">
+          <item row="1" column="1">
            <widget class="QPushButton" name="enable_nominal_mode_pushButton">
             <property name="text">
              <string>Отправить</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="enable_operating_mode_label">
             <property name="text">
              <string>Перейти в режим работы с научной аппаратурой </string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="2" column="1">
            <widget class="QPushButton" name="enable_operating_mode_pushButton">
             <property name="text">
              <string>Отправить</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="enable_emergency_mode_pushButton">
-            <property name="text">
-             <string>Отправить</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="enable_emergency_mode_label">
-            <property name="text">
-             <string>Перейти в аварийный режим работы</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item row="1" column="0">
            <widget class="QLabel" name="enable_nominal_mode_label">
             <property name="text">
              <string>Перейти в штатный режим работы</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="0" column="0">
            <widget class="QLabel" name="enable_minimal_mode_label">
             <property name="text">
              <string>Перейти в режим работы с минимальным энергопотреблением </string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="0" column="1">
            <widget class="QPushButton" name="enable_minimal_mode_pushButton">
             <property name="text">
              <string>Отправить</string>
@@ -147,9 +154,106 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="toggle_power_tab">
+       <attribute name="title">
+        <string>Исполнительные устройства</string>
+       </attribute>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>581</width>
+          <height>213</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="4" column="2">
+          <widget class="QPushButton" name="device_power_disable_pushButton">
+           <property name="text">
+            <string> Выключить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLineEdit" name="command_name_lineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string> Идентификатор оборудования:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="device_id_lineEdit"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QPushButton" name="device_power_enable_pushButton">
+           <property name="text">
+            <string> Включить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Управление питанием:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Отправка команд:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="2">
+          <widget class="QPushButton" name="exec_command_pushButton">
+           <property name="text">
+            <string>Выполнить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="command_argument_lineEdit"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Имя команды:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Аргумент:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QWidget" name="other_commands_tab">
        <attribute name="title">
-        <string>Остальные команды</string>
+        <string>Радиомодуль</string>
        </attribute>
        <layout class="QFormLayout" name="formLayout">
         <property name="fieldGrowthPolicy">
@@ -157,6 +261,23 @@
         </property>
         <item row="0" column="0">
          <layout class="QGridLayout" name="radio_module_settings_gridLayout">
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Выбор основного передатчика:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="enable_broadcasting_pushButton">
+            <property name="text">
+             <string>Включить</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="QComboBox" name="set_channel_number_comboBox">
             <item>
@@ -249,9 +370,9 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="toggle_transmission_pushButton">
+           <widget class="QPushButton" name="disable_broadcasting_pushButton">
             <property name="text">
-             <string>Отправить</string>
+             <string>Выключить</string>
             </property>
            </widget>
           </item>
@@ -265,20 +386,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="toggle_transmission_comboBox">
-            <item>
-             <property name="text">
-              <string>Выключить</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Включить</string>
-             </property>
-            </item>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="set_channel_number_label">
             <property name="text">
@@ -289,13 +396,29 @@
           <item row="1" column="0">
            <widget class="QLabel" name="toggle_transmission_label">
             <property name="text">
-             <string>Вкл/Выкл вещание в эфир</string>
+             <string>Вещание в эфир</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QComboBox" name="transceiver_select_comboBox"/>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="transceiver_select_pushButton">
+            <property name="text">
+             <string>Назначить основным</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
         <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_4"/>
+        </item>
+        <item row="3" column="0">
+         <layout class="QGridLayout" name="gridLayout_3"/>
+        </item>
+        <item row="4" column="0">
          <widget class="QLabel" name="separation_label">
           <property name="text">
            <string/>
@@ -303,53 +426,48 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <layout class="QGridLayout" name="real_time_clock_settings_gridLayout">
-          <item row="2" column="1">
-           <widget class="QPushButton" name="real_time_clock_settings_pushButton">
-            <property name="text">
-             <string>Отправить</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QDateTimeEdit" name="real_time_clock_settings_dateTimeEdit"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="other_commands_real_time_clock_settings_label">
-            <property name="styleSheet">
-             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
-            </property>
-            <property name="text">
-             <string> Установка даты и времени на имитаторе СМКА:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <layout class="QGridLayout" name="gridLayout_5"/>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Другие команды</string>
+       </attribute>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>541</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="real_time_clock_settings_gridLayout">
+         <item row="2" column="1">
+          <widget class="QPushButton" name="real_time_clock_settings_pushButton">
+           <property name="text">
+            <string>Отправить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QDateTimeEdit" name="real_time_clock_settings_dateTimeEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="other_commands_real_time_clock_settings_label">
+           <property name="styleSheet">
+            <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+           </property>
+           <property name="text">
+            <string> Установка даты и времени на имитаторе СМКА:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
-    </item>
-    <item row="3" column="0">
-     <layout class="QGridLayout" name="command_eval_date_time_gridLayout">
-      <item row="1" column="0">
-       <widget class="QDateTimeEdit" name="command_eval_date_time_dateTimeEdit"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="command_eval_date_time_checkBox">
-        <property name="text">
-         <string>Выполнить команду сразу при получении</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="command_eval_date_time_label">
-        <property name="text">
-         <string>Установить время и дату выполнения посылаемой команды или выполнить команду сразу при получении:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>
