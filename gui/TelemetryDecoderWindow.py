@@ -31,18 +31,38 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
         self.connect(self.ui_main_window.CPU_usage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_CPU_usage)
+                     self.on_plot_CPU_0_usage)
         self.connect(self.ui_main_window.CPU_usage_2_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_CPU_2_usage)
+                     self.on_plot_CPU_1_usage)
         self.connect(self.ui_main_window.CPU_temperature_checkBox,
                      SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_CPU_temperature)
+                     self.on_plot_CPU_temperature)
         self.connect(self.ui_main_window.RAM_usage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_RAM_usage)
+                     self.on_plot_RAM_usage)
         self.connect(self.ui_main_window.HDD_usage_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_HDD_usage)
+                     self.on_plot_HDD_usage)
         self.connect(self.ui_main_window.CPU_plate_temp_checkBox, SIGNAL("stateChanged(int)"),
-                     self.plot_onboard_computer_HDD_usage)
+                     self.on_plot_cpu_board_temp)
+        self.connect(self.ui_main_window.solar_sensor_1_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_solar_sensor_1)
+        self.connect(self.ui_main_window.solar_sensor_2_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_solar_sensor_2)
+        self.connect(self.ui_main_window.solar_sensor_3_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_solar_sensor_3)
+        self.connect(self.ui_main_window.solar_sensor_4_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_solar_sensor_4)
+        self.connect(self.ui_main_window.magnetometer_x_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_magnetometer_x)
+        self.connect(self.ui_main_window.magnetometer_y_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_magnetometer_y)
+        self.connect(self.ui_main_window.magnetometer_z_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_magnetometer_z)
+        self.connect(self.ui_main_window.accelerometer_gyroscope_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_accelerometer_gyroscope_temperature)
+        self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_payload_temperature)
+
+
 
         # self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
         #              self.plot_payload_module_temperature)
@@ -69,20 +89,50 @@ class TelemetryDecoderWindow(QMainWindow):
                 plot.close()
 
 
-    def plot_onboard_computer_CPU_usage(self, state):
-        self.toggle_plot(state, "Intel Atom CPU usage of first core", self.data_plotter.get_onboard_computer_CPU_usage_plot)
+    def on_plot_CPU_0_usage(self, state):
+        self.toggle_plot(state, SENSOR_OS_CPU0 , self.data_plotter.get_CPU_0_usage_plot)
 
-    def plot_onboard_computer_CPU_2_usage(self, state):
-        self.toggle_plot(state, "Intel Atom CPU usage of second core", self.data_plotter.get_onboard_computer_CPU_usage_plot)
+    def on_plot_CPU_1_usage(self, state):
+        self.toggle_plot(state, SENSOR_OS_CPU1, self.data_plotter.get_CPU_1_usage_plot)
 
-    def plot_onboard_computer_CPU_temperature(self, state):
-        self.toggle_plot(state, "Chip internal temperature of Intel Atom CPU", self.data_plotter.get_onboard_computer_CPU_temperature_plot)
+    def on_plot_CPU_temperature(self, state):
+        self.toggle_plot(state, SENSOR_CPU_TEMP, self.data_plotter.get_CPU_temperature_plot)
 
-    def plot_onboard_computer_RAM_usage(self, state):
-        self.toggle_plot(state, "RAM usage", self.data_plotter.get_onboard_computer_RAM_usage_plot)
+    def on_plot_RAM_usage(self, state):
+        self.toggle_plot(state, SENSOR_OS_RAM, self.data_plotter.get_RAM_usage_plot)
 
-    def plot_onboard_computer_HDD_usage(self, state):
-        self.toggle_plot(state, "HDD usage", self.data_plotter.get_onboard_computer_HDD_usage_plot)
+    def on_plot_HDD_usage(self, state):
+        self.toggle_plot(state, SENSOR_OS_DISK, self.data_plotter.get_HDD_usage_plot)
+
+    def on_plot_cpu_board_temp(self, state):
+        self.toggle_plot(state, SENSOR_BOARD_TEMP, self.data_plotter.get_cpu_board_temp_plot)
+
+    def on_plot_solar_sensor_1(self, state):
+        self.toggle_plot(state, SENSOR_LIGHT1, self.data_plotter.get_solar_sensor_1_plot)
+
+    def on_plot_solar_sensor_2(self, state):
+        self.toggle_plot(state, SENSOR_LIGHT2, self.data_plotter.get_solar_sensor_2_plot)
+
+    def on_plot_solar_sensor_3(self, state):
+        self.toggle_plot(state, SENSOR_LIGHT3, self.data_plotter.get_solar_sensor_3_plot)
+
+    def on_plot_solar_sensor_4(self, state):
+        self.toggle_plot(state, SENSOR_LIGHT4, self.data_plotter.get_solar_sensor_4_plot)
+
+    def on_plot_magnetometer_x(self, state):
+        self.toggle_plot(state, SENSOR_MAGNET_X, self.data_plotter.get_magnetometer_x_plot)
+
+    def on_plot_magnetometer_y(self, state):
+        self.toggle_plot(state, SENSOR_MAGNET_Y, self.data_plotter.get_magnetometer_y_plot)
+
+    def on_plot_magnetometer_z(self, state):
+        self.toggle_plot(state, SENSOR_MAGNET_Z, self.data_plotter.get_magnetometer_z_plot)
+
+    def on_plot_accelerometer_gyroscope_temperature(self, state):
+        self.toggle_plot(state, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP, self.data_plotter.get_accelerometer_gyroscope_temperature_plot)
+
+    def on_plot_payload_temperature(self, state):
+        self.toggle_plot(state, SENSOR_PAYLOAD_TEMP, self.data_plotter.get_payload_module_temperature_plot)
 
     def get_value(self, payload, sensor):
         if sensor in payload:
@@ -107,6 +157,6 @@ class TelemetryDecoderWindow(QMainWindow):
         self.ui_main_window.magnetometer_x_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_X))
         self.ui_main_window.magnetometer_y_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Y))
         self.ui_main_window.magnetometer_z_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Z))
-        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_TEMP))
+        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(self.get_value(payload, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP))
 
         self.ui_main_window.payload_temperature_lcdNumber.display(self.get_value(payload, SENSOR_PAYLOAD_TEMP))

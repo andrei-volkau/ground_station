@@ -80,8 +80,9 @@ class KISS_thread(QtCore.QThread):
             print "ax.25 is failed"
 
 
-    def send_command(self, name, arg = None):
-        data = {"Timestamp": int(time.time()), "Cmd": name, "Arg": arg}
+    def send_command(self,name, arg = None, time_of_execution = None):
+        data = {"Timestamp": int(time.time()), "Scheduler": time_of_execution, "Cmd": name, "Arg": arg}
+
         json_data = json.dumps(data)
         writer = KissWriter(self.kiss_prot)
         writer.set_destination(REMOTE_SSID)

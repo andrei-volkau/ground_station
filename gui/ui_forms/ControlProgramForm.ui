@@ -46,19 +46,19 @@
      </widget>
     </item>
     <item row="3" column="0">
-     <layout class="QGridLayout" name="command_eval_date_time_gridLayout">
+     <layout class="QGridLayout" name="execution_date_time_gridLayout">
       <item row="1" column="0">
-       <widget class="QDateTimeEdit" name="command_eval_date_time_dateTimeEdit"/>
+       <widget class="QDateTimeEdit" name="execution_dateTimeEdit"/>
       </item>
       <item row="1" column="1">
-       <widget class="QCheckBox" name="command_eval_date_time_checkBox">
+       <widget class="QCheckBox" name="execution_date_time_checkBox">
         <property name="text">
          <string>Выполнить команду сразу при получении</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="command_eval_date_time_label">
+       <widget class="QLabel" name="execution_date_time_label">
         <property name="text">
          <string>Установить время и дату выполнения посылаемой команды или выполнить команду сразу при получении:</string>
         </property>
@@ -84,7 +84,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -188,9 +188,6 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="device_id_lineEdit"/>
-         </item>
          <item row="4" column="1">
           <widget class="QPushButton" name="device_power_enable_pushButton">
            <property name="text">
@@ -246,6 +243,43 @@
            <property name="text">
             <string>Аргумент:</string>
            </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QComboBox" name="device_id_comboBox">
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>light</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>hmc58831</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>mpu6050</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ms5611</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ds1621</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>
@@ -401,7 +435,18 @@
            </widget>
           </item>
           <item row="4" column="0">
-           <widget class="QComboBox" name="transceiver_select_comboBox"/>
+           <widget class="QComboBox" name="transceiver_select_comboBox">
+            <item>
+             <property name="text">
+              <string>Приёмопередатчик A</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Приёмопередатчик B</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="4" column="1">
            <widget class="QPushButton" name="transceiver_select_pushButton">
@@ -445,14 +490,14 @@
         </property>
         <layout class="QGridLayout" name="real_time_clock_settings_gridLayout">
          <item row="2" column="1">
-          <widget class="QPushButton" name="real_time_clock_settings_pushButton">
+          <widget class="QPushButton" name="set_real_time_pushButton">
            <property name="text">
             <string>Отправить</string>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QDateTimeEdit" name="real_time_clock_settings_dateTimeEdit"/>
+          <widget class="QDateTimeEdit" name="set_real_time_date_TimeEdit"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="other_commands_real_time_clock_settings_label">

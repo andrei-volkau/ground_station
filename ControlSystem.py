@@ -8,8 +8,9 @@ from telemetry_sharing.push_to_website import push_to_website
 CMD_MINIMAL = "CMD_MINIMAL"
 CMD_NOMINAL = "CMD_NOMINAL"
 CMD_OPERATING = "CMD_OPERATING"
-CMD_ENABLE_TRANSMISSION = "CMD_ENABLE_TRANSMISSION"
-CMD_DISABLE_TRANSMISSION = "CMD_DISABLE_TRANSMISSION"
+CMD_ENABLE_BROADCASTING = "CMD_ENABLE_TRANSMISSION"
+CMD_DISABLE_BROADCASTING = "CMD_DISABLE_TRANSMISSION"
+CMD_SET_REAL_TIME = "CMD_SET_REAL_TIME"
 
 
 class ControlSystem(QObject):
@@ -26,10 +27,8 @@ class ControlSystem(QObject):
         self.kiss_thread.start()
         self.kiss_thread.packet_received.connect(self.on_packet_received)
 
-    def send_command(self, cmd):
-        print "Issued command:", cmd
-
-        self.kiss_thread.send_command(cmd)
+    def send_command(self, cmd, arg = None, time_of_execution = None):
+         self.kiss_thread.send_command(cmd, arg, time_of_execution)
 
 
     def on_packet_received(self, packet):
