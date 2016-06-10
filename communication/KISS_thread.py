@@ -38,6 +38,7 @@ class KISS_thread(QtCore.QThread):
         self.kiss_connect()
 
     def read_callback(self,data):
+        print len(data)
         kiss_data = kiss.constants.FEND + kiss.util.escape_special_codes(data) + kiss.constants.FEND
         log_the_data("./log_files/telemetry_log_files/BSU_satellite.kss", kiss_data)
         data = data[1:]

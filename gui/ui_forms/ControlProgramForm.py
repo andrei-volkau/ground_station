@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlProgramForm.ui'
 #
-# Created: Fri Jun 10 15:49:52 2016
+# Created: Fri Jun 10 21:35:16 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(971, 603)
+        MainWindow.resize(608, 647)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
@@ -36,10 +36,6 @@ class Ui_MainWindow(object):
         self.panel_for_manual_sending_of_commands_label.setTextFormat(QtCore.Qt.PlainText)
         self.panel_for_manual_sending_of_commands_label.setObjectName(_fromUtf8("panel_for_manual_sending_of_commands_label"))
         self.gridLayout_2.addWidget(self.panel_for_manual_sending_of_commands_label, 2, 0, 1, 1)
-        self.undecoded_packages_textEdit = QtGui.QTextEdit(self.centralwidget)
-        self.undecoded_packages_textEdit.setStyleSheet(_fromUtf8("background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));"))
-        self.undecoded_packages_textEdit.setObjectName(_fromUtf8("undecoded_packages_textEdit"))
-        self.gridLayout_2.addWidget(self.undecoded_packages_textEdit, 1, 0, 1, 1)
         self.undecoded_data_from_packages_label = QtGui.QLabel(self.centralwidget)
         self.undecoded_data_from_packages_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
         self.undecoded_data_from_packages_label.setObjectName(_fromUtf8("undecoded_data_from_packages_label"))
@@ -122,20 +118,10 @@ class Ui_MainWindow(object):
         self.label_3.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridLayout.addWidget(self.label_3, 5, 0, 1, 1)
-        self.exec_command_pushButton = QtGui.QPushButton(self.gridLayoutWidget)
-        self.exec_command_pushButton.setObjectName(_fromUtf8("exec_command_pushButton"))
-        self.gridLayout.addWidget(self.exec_command_pushButton, 8, 2, 1, 1)
-        self.command_argument_lineEdit = QtGui.QLineEdit(self.gridLayoutWidget)
-        self.command_argument_lineEdit.setObjectName(_fromUtf8("command_argument_lineEdit"))
-        self.gridLayout.addWidget(self.command_argument_lineEdit, 8, 1, 1, 1)
         self.label_5 = QtGui.QLabel(self.gridLayoutWidget)
         self.label_5.setStyleSheet(_fromUtf8(""))
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.gridLayout.addWidget(self.label_5, 6, 0, 1, 1)
-        self.label_6 = QtGui.QLabel(self.gridLayoutWidget)
-        self.label_6.setStyleSheet(_fromUtf8(""))
-        self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.gridLayout.addWidget(self.label_6, 6, 1, 1, 1)
         self.device_id_comboBox = QtGui.QComboBox(self.gridLayoutWidget)
         self.device_id_comboBox.setEditable(True)
         self.device_id_comboBox.setObjectName(_fromUtf8("device_id_comboBox"))
@@ -147,6 +133,9 @@ class Ui_MainWindow(object):
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.device_id_comboBox, 1, 0, 1, 1)
+        self.device_command_pushButton = QtGui.QPushButton(self.gridLayoutWidget)
+        self.device_command_pushButton.setObjectName(_fromUtf8("device_command_pushButton"))
+        self.gridLayout.addWidget(self.device_command_pushButton, 8, 1, 1, 1)
         self.modes_of_operation_tabWidget.addTab(self.toggle_power_tab, _fromUtf8(""))
         self.other_commands_tab = QtGui.QWidget()
         self.other_commands_tab.setObjectName(_fromUtf8("other_commands_tab"))
@@ -211,6 +200,10 @@ class Ui_MainWindow(object):
         self.real_time_clock_settings_gridLayout.addWidget(self.other_commands_real_time_clock_settings_label, 1, 0, 1, 1)
         self.modes_of_operation_tabWidget.addTab(self.tab, _fromUtf8(""))
         self.gridLayout_2.addWidget(self.modes_of_operation_tabWidget, 4, 0, 1, 1)
+        self.undecoded_packages_textEdit = QtGui.QTextEdit(self.centralwidget)
+        self.undecoded_packages_textEdit.setStyleSheet(_fromUtf8("background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));"))
+        self.undecoded_packages_textEdit.setObjectName(_fromUtf8("undecoded_packages_textEdit"))
+        self.gridLayout_2.addWidget(self.undecoded_packages_textEdit, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionOpen = QtGui.QAction(MainWindow)
         self.actionOpen.setEnabled(True)
@@ -221,7 +214,7 @@ class Ui_MainWindow(object):
         self.actionClose.setObjectName(_fromUtf8("actionClose"))
 
         self.retranslateUi(MainWindow)
-        self.modes_of_operation_tabWidget.setCurrentIndex(2)
+        self.modes_of_operation_tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -242,14 +235,13 @@ class Ui_MainWindow(object):
         self.device_power_enable_pushButton.setText(_translate("MainWindow", " Включить", None))
         self.label_2.setText(_translate("MainWindow", "Управление питанием:", None))
         self.label_3.setText(_translate("MainWindow", "Отправка команд:", None))
-        self.exec_command_pushButton.setText(_translate("MainWindow", "Выполнить", None))
         self.label_5.setText(_translate("MainWindow", "Имя команды:", None))
-        self.label_6.setText(_translate("MainWindow", "Аргумент:", None))
         self.device_id_comboBox.setItemText(1, _translate("MainWindow", "light", None))
         self.device_id_comboBox.setItemText(2, _translate("MainWindow", "hmc58831", None))
         self.device_id_comboBox.setItemText(3, _translate("MainWindow", "mpu6050", None))
         self.device_id_comboBox.setItemText(4, _translate("MainWindow", "ms5611", None))
         self.device_id_comboBox.setItemText(5, _translate("MainWindow", "ds1621", None))
+        self.device_command_pushButton.setText(_translate("MainWindow", "Выполнить", None))
         self.modes_of_operation_tabWidget.setTabText(self.modes_of_operation_tabWidget.indexOf(self.toggle_power_tab), _translate("MainWindow", "Исполнительные устройства", None))
         self.label_4.setText(_translate("MainWindow", "Выбор основного передатчика:", None))
         self.enable_broadcasting_pushButton.setText(_translate("MainWindow", "Включить", None))

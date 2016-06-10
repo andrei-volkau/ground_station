@@ -64,6 +64,7 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
 
+
         # self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
         #              self.plot_payload_module_temperature)
 
@@ -136,7 +137,10 @@ class TelemetryDecoderWindow(QMainWindow):
 
     def get_value(self, payload, sensor):
         if sensor in payload:
-            return str(payload[sensor]["val"])
+            v = str(payload[sensor]["val"])
+            if len(v) > 6:
+                v = v[:6]
+            return v
         return ""
 
     def on_payload_received(self, payload):
@@ -157,6 +161,12 @@ class TelemetryDecoderWindow(QMainWindow):
         self.ui_main_window.magnetometer_x_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_X))
         self.ui_main_window.magnetometer_y_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Y))
         self.ui_main_window.magnetometer_z_lcdNumber.display(self.get_value(payload, SENSOR_MAGNET_Z))
+        self.ui_main_window.gyroscope_x_lcdNumber.display(self.get_value(payload, SENSOR_GYRO_X))
+        self.ui_main_window.gyroscope_y_lcdNumber.display(self.get_value(payload, SENSOR_GYRO_Y))
+        self.ui_main_window.gyroscope_z_lcdNumber.display(self.get_value(payload, SENSOR_GYRO_Z))
+        self.ui_main_window.accelerometer_x_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_X))
+        self.ui_main_window.accelerometer_y_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_Y))
+        self.ui_main_window.accelerometer_z_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_Z))
         self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(self.get_value(payload, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP))
 
         self.ui_main_window.payload_temperature_lcdNumber.display(self.get_value(payload, SENSOR_PAYLOAD_TEMP))
