@@ -115,9 +115,9 @@ class DataPlotter(QObject):
         data = self.get_data_for_plotting(SENSOR_MAGNET_Z)
         return BarChart(u"Magnetometer", u", Tl", data)
 
-    def get_accelerometer_gyroscope_temperature_plot(self):
+    def get_accelerometer_gyroscope_board_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_ACCELEROMETER_GYROSCOPE_TEMP)
-        return BarChart(u"Magnetometer", u", Tl", data)
+        return BarChart(u"Temperature of accelerometer and gyroscope board" ,u"Temperature, Celsius degrees", data)
 
     def get_payload_module_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_PAYLOAD_TEMP)

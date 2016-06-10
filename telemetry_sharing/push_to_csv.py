@@ -36,12 +36,14 @@ FIELD_NAMES = {
     ]
 }
 
+CSV_TEL_DIRECTORY = "./log_files/telemetry_log_files/"
+
 def get_csv_filename(category):
-    return "./log_files/telemetry_log_files/" + category + ".csv"
+    return CSV_TEL_DIRECTORY + category + ".csv"
 
 
 def write_to_csv(time, cat, telemetry):
-    print "write_to_csv", time, cat, telemetry
+    # print "write_to_csv", time, cat, telemetry
     if cat not in FIELD_NAMES:
         return
     fieldnames = FIELD_NAMES[cat]

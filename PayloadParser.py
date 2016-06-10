@@ -5,8 +5,7 @@ CAT_ELECTRIC_POWER_SYS = 'electric_power_sys'
 CAT_COMMUNICATION_SYS = 'communication_sys'
 CAT_ONBOARD_COMP_SYS = 'onboard_comp_sys'
 CAT_ATTITUDE_CONTROL_SYS = 'attitude_control_sys'
-CAT_PAYLOAD_SYS = ' ' \
-                  'payload_sys'
+CAT_PAYLOAD_SYS = 'payload_sys'
 
 SENSOR_TIMESTAMP = 'tel_Timestamp'
 SENSOR_OS_CPU0 = 'tel_os_info.p `y_cpu_0'

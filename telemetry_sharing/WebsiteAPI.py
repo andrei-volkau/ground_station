@@ -4,9 +4,9 @@ from PyQt4 import QtCore
 from loggers.error_logger import log_the_error
 
 
-class SatelliteAPI(QtCore.QRunnable):
+class WebsiteAPI(QtCore.QRunnable):
     def __init__(self):
-        super(SatelliteAPI, self).__init__()
+        super(WebsiteAPI, self).__init__()
 
     # Example: server.set_password('abc')
     def set_password(self, password):

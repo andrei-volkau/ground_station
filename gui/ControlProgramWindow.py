@@ -4,7 +4,7 @@ from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import QMainWindow, QTextCursor
 
 from ControlSystem import CMD_MINIMAL, CMD_NOMINAL, CMD_OPERATING, CMD_ENABLE_BROADCASTING, CMD_DISABLE_BROADCASTING, \
-    CMD_SET_REAL_TIME
+    CMD_SET_REAL_TIME, CMD_ENABLE_DEVICE, CMD_DISABLE_DEVICE, CMD_TRANSCEIVER_SELECT
 from gui.ui_forms import ControlProgramForm
 
 
@@ -33,6 +33,12 @@ class ControlProgramWindow(QMainWindow):
                      SIGNAL("clicked()"), self.on_set_real_time)
         self.connect(self.ui_main_window.device_power_enable_pushButton,
                      SIGNAL("clicked()"), self.on_device_power_enable)
+        self.connect(self.ui_main_window.device_power_disable_pushButton,
+                     SIGNAL("clicked()"), self.on_device_power_disable)
+        self.connect(self.ui_main_window.transceiver_select_pushButton,
+                     SIGNAL("clicked()"), self.on_transceiver_select)
+        self.connect(self.ui_main_window.exec_command_pushButton,
+                     SIGNAL("clicked()"), self.on_exec_command)
 
     # def check_
 
@@ -62,7 +68,31 @@ class ControlProgramWindow(QMainWindow):
         time = self.ui_main_window.set_real_time_date_TimeEdit.dateTime().toTime_t()
         self.control_system.send_command_with_time_mark(CMD_SET_REAL_TIME, time)
 
-    def on_device_power_enable(self):
-        combobox_device_index = self.ui_main_window.device_id_comboBox.currentIndex()
-        print "-----------",self.ui_main_window.device_id_comboBox.itemText(combobox_device_index)
+    # def get_combobox_text(combobox):
+    #     combobox_index = combobox.currentIndex()
+    #     combobox_text =  str(combobox.itemText(combobox_index))
+    #     return combobox_text
 
+    def on_device_power_enable(self):
+        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
+        text = str(self.ui_main_window.device_id_comboBox.itemText(text_index))
+        self.send_command_with_time_mark(CMD_ENABLE_DEVICE, text)
+
+    def on_device_power_disable(self):
+        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
+        text = str(self.ui_main_window.device_id_comboBox.itemText(text_index))
+        self.send_command_with_time_mark(CMD_DISABLE_DEVICE, text)
+
+    def on_transceiver_select(self):
+        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
+        text = str(self.ui_main_window.transceiver_select_comboBox.itemText(text_index))
+        self.send_command_with_time_mark(CMD_TRANSCEIVER_SELECT, text)
+
+    def on_exec_command(self):
+        command_name = str(self.ui_main_window.command_name_lineEdit.displayText())
+        arg_name = str(self.ui_main_window.command_argument_lineEdit.displayText())
+        if command_name != "":
+            if arg_name == "":
+                self.send_command_with_time_mark(command_name)
+            else:
+                self.send_command_with_time_mark(command_name, arg_name)

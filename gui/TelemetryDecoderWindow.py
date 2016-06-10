@@ -129,7 +129,7 @@ class TelemetryDecoderWindow(QMainWindow):
         self.toggle_plot(state, SENSOR_MAGNET_Z, self.data_plotter.get_magnetometer_z_plot)
 
     def on_plot_accelerometer_gyroscope_temperature(self, state):
-        self.toggle_plot(state, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP, self.data_plotter.get_accelerometer_gyroscope_temperature_plot)
+        self.toggle_plot(state, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP, self.data_plotter.get_accelerometer_gyroscope_board_temperature_plot)
 
     def on_plot_payload_temperature(self, state):
         self.toggle_plot(state, SENSOR_PAYLOAD_TEMP, self.data_plotter.get_payload_module_temperature_plot)

@@ -38,7 +38,6 @@ class KISS_thread(QtCore.QThread):
         self.kiss_connect()
 
     def read_callback(self,data):
-        print "read_callback, packet length", len(data)
         kiss_data = kiss.constants.FEND + kiss.util.escape_special_codes(data) + kiss.constants.FEND
         log_the_data("./log_files/telemetry_log_files/BSU_satellite.kss", kiss_data)
         data = data[1:]
@@ -56,7 +55,6 @@ class KISS_thread(QtCore.QThread):
         ssid = ord(data[13]) & 1
         if ssid == 0:
             via = "".join([chr(ord(c)>>1) for c in data[7:13]])
-            print "Retr", via
             start = 23
         size = len(data) - start
         if size == 0:
