@@ -12,9 +12,11 @@ class ControlProgramWindow(QMainWindow):
     """
         GUI for control program for miniaturized satellite imitator
     """
+
     def __init__(self, control_system):
         QMainWindow.__init__(self)
         self.control_system = control_system
+        self.control_system.response_received.connect(self.on_response_received)
         self.ui_main_window = ControlProgramForm.Ui_MainWindow()
         self.ui_main_window.setupUi(self)
         self.ui_main_window.undecoded_packages_textEdit.moveCursor(QTextCursor.EndOfBlock)
@@ -41,12 +43,12 @@ class ControlProgramWindow(QMainWindow):
                      SIGNAL("clicked()"), self.on_device_command)
 
 
-    def send_command_with_time_mark(self, command, argument = None):
+    def send_command_with_time_mark(self, command, argument=None, device=None):
         if self.ui_main_window.execution_date_time_checkBox.checkState() == 0:
             execution_time = self.ui_main_window.execution_dateTimeEdit.dateTime().toTime_t()
-            self.control_system.send_command(command, arg = argument, time_of_execution = execution_time)
+            self.control_system.send_command(command, arg=argument, time_of_execution=execution_time, device=device)
         else:
-            self.control_system.send_command(command, arg = argument)
+            self.control_system.send_command(command, arg=argument, device=device)
 
     def on_enable_minimal_mode(self):
         self.send_command_with_time_mark(CMD_MINIMAL)
@@ -64,30 +66,31 @@ class ControlProgramWindow(QMainWindow):
         self.send_command_with_time_mark(CMD_DISABLE_BROADCASTING)
 
     def on_set_real_time(self):
-        time = self.ui_main_window.set_real_time_date_TimeEdit.dateTime().toTime_t()
-        self.control_system.send_command_with_time_mark(CMD_SET_REAL_TIME, argument = time)
+        time = int(self.ui_main_window.set_real_time_date_TimeEdit.dateTime().toTime_t())
+        self.send_command_with_time_mark(CMD_SET_REAL_TIME, argument=time)
 
     # def get_combobox_text(combobox):
-    #     combobox_index = combobox.currentIndex()
-    #     combobox_text =  str(combobox.itemText(combobox_index))
+    # combobox_index = combobox.currentIndex()
+    # combobox_text =  str(combobox.itemText(combobox_index))
     #     return combobox_text
 
     def on_device_power_enable(self):
-        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
-        text = str(self.ui_main_window.device_id_comboBox.itemText(text_index))
-        self.send_command_with_time_mark(CMD_ENABLE_DEVICE, argument = text)
+        text = str(self.ui_main_window.device_id_comboBox.currentText())
+        self.send_command_with_time_mark(CMD_ENABLE_DEVICE, device=text)
 
     def on_device_power_disable(self):
-        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
-        text = str(self.ui_main_window.device_id_comboBox.itemText(text_index))
-        self.send_command_with_time_mark(CMD_DISABLE_DEVICE, argument = text)
+        text = str(self.ui_main_window.device_id_comboBox.currentText())
+        self.send_command_with_time_mark(CMD_DISABLE_DEVICE, device=text)
 
     def on_transceiver_select(self):
-        text_index = self.ui_main_window.device_id_comboBox.currentIndex()
-        text = str(self.ui_main_window.transceiver_select_comboBox.itemText(text_index))
-        self.send_command_with_time_mark(CMD_TRANSCEIVER_SELECT, argument = text)
+        text = str(self.ui_main_window.transceiver_select_comboBox.currentText())
+        self.send_command_with_time_mark(CMD_TRANSCEIVER_SELECT, argument=text)
 
     def on_device_command(self):
+        device_id = str(self.ui_main_window.device_id_comboBox.currentText())
         device_cmd = str(self.ui_main_window.command_name_lineEdit.displayText())
-        self.send_command_with_time_mark(CMD_DEVICE_COMMAND, argument = device_cmd)
+        self.send_command_with_time_mark(CMD_DEVICE_COMMAND, device=device_id, argument=device_cmd)
 
+    def on_response_received(self, data):
+        text = str(data)
+        self.ui_main_window.undecoded_packages_textEdit.append(text)

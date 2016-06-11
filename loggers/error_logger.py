@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from time import gmtime, strftime
-from loggers.logger import  log_the_data
+
+from loggers.logger import log_the_data
+
 
 ERROR_LOG_ADR = ".\log_files\exception_log_files\exception_log.csv"
 

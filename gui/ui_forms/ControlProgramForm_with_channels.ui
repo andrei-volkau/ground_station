@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
-    <height>647</height>
+    <width>971</width>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,13 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QTextEdit" name="undecoded_packages_textEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QLabel" name="undecoded_data_from_packages_label">
       <property name="styleSheet">
@@ -41,18 +48,7 @@
     <item row="3" column="0">
      <layout class="QGridLayout" name="execution_date_time_gridLayout">
       <item row="1" column="0">
-       <widget class="QDateTimeEdit" name="execution_dateTimeEdit">
-        <property name="dateTime">
-         <datetime>
-          <hour>0</hour>
-          <minute>0</minute>
-          <second>0</second>
-          <year>2016</year>
-          <month>1</month>
-          <day>1</day>
-         </datetime>
-        </property>
-       </widget>
+       <widget class="QDateTimeEdit" name="execution_dateTimeEdit"/>
       </item>
       <item row="1" column="1">
        <widget class="QCheckBox" name="execution_date_time_checkBox">
@@ -88,7 +84,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -219,6 +215,16 @@
            </property>
           </widget>
          </item>
+         <item row="8" column="2">
+          <widget class="QPushButton" name="exec_command_pushButton">
+           <property name="text">
+            <string>Выполнить</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="command_argument_lineEdit"/>
+         </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_5">
            <property name="styleSheet">
@@ -226,6 +232,16 @@
            </property>
            <property name="text">
             <string>Имя команды:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Аргумент:</string>
            </property>
           </widget>
          </item>
@@ -266,13 +282,6 @@
            </item>
           </widget>
          </item>
-         <item row="8" column="1">
-          <widget class="QPushButton" name="device_command_pushButton">
-           <property name="text">
-            <string>Выполнить</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </widget>
@@ -286,7 +295,7 @@
         </property>
         <item row="0" column="0">
          <layout class="QGridLayout" name="radio_module_settings_gridLayout">
-          <item row="1" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="label_4">
             <property name="styleSheet">
              <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
@@ -296,14 +305,105 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="1" column="1">
            <widget class="QPushButton" name="enable_broadcasting_pushButton">
             <property name="text">
              <string>Включить</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="2" column="1">
+           <widget class="QComboBox" name="set_channel_number_comboBox">
+            <item>
+             <property name="text">
+              <string>1)   433.15 - 433.25  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2)   433.25 - 433.35  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>3)   433.25 - 433.35  MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>4)   433.45 - 433.55 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>5)   433.55 - 433.65 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>6)   433.65 - 433.75 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>7)   433.75 - 433.85 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>8)   433.85 - 433.95 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>9)   433.95 - 434.05 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10) 434.05 - 434.15 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>11) 434.15 - 434.25 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>12) 434.25 - 434.35 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>13) 434.35 - 434.45 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>14) 434.45 - 434.55 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>15) 434.55 - 434.65 MHz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>16) 434.65 - 434.75 MHz</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="set_channel_number_pushButton">
+            <property name="text">
+             <string>Отправить</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
            <widget class="QPushButton" name="disable_broadcasting_pushButton">
             <property name="text">
              <string>Выключить</string>
@@ -311,27 +411,44 @@
            </widget>
           </item>
           <item row="0" column="0">
+           <widget class="QLabel" name="radio_module_settings_label">
+            <property name="styleSheet">
+             <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Настройки радиомодуля: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="set_channel_number_label">
+            <property name="text">
+             <string>Установить канал</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
            <widget class="QLabel" name="toggle_transmission_label">
             <property name="text">
              <string>Вещание в эфир</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QComboBox" name="transceiver_select_comboBox">
             <item>
              <property name="text">
-              <string>TNCA</string>
+              <string>TNC A</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>TNCB</string>
+              <string>TNC B</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="4" column="1">
            <widget class="QPushButton" name="transceiver_select_pushButton">
             <property name="text">
              <string>Назначить основным</string>
@@ -380,18 +497,7 @@
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QDateTimeEdit" name="set_real_time_date_TimeEdit">
-           <property name="dateTime">
-            <datetime>
-             <hour>0</hour>
-             <minute>0</minute>
-             <second>0</second>
-             <year>2016</year>
-             <month>1</month>
-             <day>1</day>
-            </datetime>
-           </property>
-          </widget>
+          <widget class="QDateTimeEdit" name="set_real_time_date_TimeEdit"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="other_commands_real_time_clock_settings_label">
@@ -406,13 +512,6 @@
         </layout>
        </widget>
       </widget>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QTextEdit" name="undecoded_packages_textEdit">
-      <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));</string>
-      </property>
      </widget>
     </item>
    </layout>

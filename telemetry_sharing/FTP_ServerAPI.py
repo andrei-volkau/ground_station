@@ -8,7 +8,6 @@ from loggers.error_logger import log_the_error
 
 
 class FTP_ServerAPI(QtCore.QRunnable):
-
     def __init__(self, file_address, file_name):
         """Make a instance of the WriterThread class.
         Args:

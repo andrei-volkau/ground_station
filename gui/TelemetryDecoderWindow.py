@@ -7,7 +7,7 @@ from PyQt4.QtGui import *
 from DataPlotter import DataPlotter
 from PayloadParser import *
 from gui.ui_forms import TelemetryDecoderForm
-
+from gui.ui_forms.TelemetryDecoderForm import _fromUtf8
 
 
 class TelemetryDecoderWindow(QMainWindow):
@@ -28,7 +28,6 @@ class TelemetryDecoderWindow(QMainWindow):
         self.ui_main_window.setupUi(self)
 
         self.ui_main_window.undecoded_data_textEdit.moveCursor(QtGui.QTextCursor.End)
-
 
         self.connect(self.ui_main_window.CPU_usage_checkBox, SIGNAL("stateChanged(int)"),
                      self.on_plot_CPU_0_usage)
@@ -65,8 +64,9 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
 
+
         # self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
-        #              self.plot_payload_module_temperature)
+        # self.plot_payload_module_temperature)
 
     def toggle_plot(self, state, name, func):
         """
@@ -91,7 +91,7 @@ class TelemetryDecoderWindow(QMainWindow):
 
 
     def on_plot_CPU_0_usage(self, state):
-        self.toggle_plot(state, SENSOR_OS_CPU0 , self.data_plotter.get_CPU_0_usage_plot)
+        self.toggle_plot(state, SENSOR_OS_CPU0, self.data_plotter.get_CPU_0_usage_plot)
 
     def on_plot_CPU_1_usage(self, state):
         self.toggle_plot(state, SENSOR_OS_CPU1, self.data_plotter.get_CPU_1_usage_plot)
@@ -130,7 +130,8 @@ class TelemetryDecoderWindow(QMainWindow):
         self.toggle_plot(state, SENSOR_MAGNET_Z, self.data_plotter.get_magnetometer_z_plot)
 
     def on_plot_accelerometer_gyroscope_temperature(self, state):
-        self.toggle_plot(state, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP, self.data_plotter.get_accelerometer_gyroscope_board_temperature_plot)
+        self.toggle_plot(state, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP,
+                         self.data_plotter.get_accelerometer_gyroscope_board_temperature_plot)
 
     def on_plot_payload_temperature(self, state):
         self.toggle_plot(state, SENSOR_PAYLOAD_TEMP, self.data_plotter.get_payload_module_temperature_plot)
@@ -167,6 +168,14 @@ class TelemetryDecoderWindow(QMainWindow):
         self.ui_main_window.accelerometer_x_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_X))
         self.ui_main_window.accelerometer_y_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_Y))
         self.ui_main_window.accelerometer_z_lcdNumber.display(self.get_value(payload, SENSOR_ACCEL_Z))
-        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(self.get_value(payload, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP))
+        self.ui_main_window.accelerometer_gyroscope_temperature_lcdNumber.display(
+            self.get_value(payload, SENSOR_ACCELEROMETER_GYROSCOPE_TEMP))
 
         self.ui_main_window.payload_temperature_lcdNumber.display(self.get_value(payload, SENSOR_PAYLOAD_TEMP))
+        self.ui_main_window.power_voltage_lcdNumber.display(self.get_value(payload, SENSOR_POWER_VOLTAGE))
+        text_source = '-'
+        if self.get_value(payload, SENSOR_POWER_SOURCE) == "s":
+            text_source = "Внешний источник"
+        elif self.get_value(payload, SENSOR_POWER_SOURCE) == "b":
+            text_source = "Батарея"
+        self.ui_main_window.power_source_label.setText(_fromUtf8(text_source))

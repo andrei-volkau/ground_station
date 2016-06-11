@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'TelemetryDecoderForm.ui'
 #
-# Created: Fri Jun 10 22:32:56 2016
+# Created: Sat Jun 11 15:04:13 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,30 +29,56 @@ class Ui_MainWindow(object):
         MainWindow.resize(712, 507)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.undecoded_data_from_packages_label = QtGui.QLabel(self.centralwidget)
+        self.undecoded_data_from_packages_label.setGeometry(QtCore.QRect(9, 9, 491, 24))
         self.undecoded_data_from_packages_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
         self.undecoded_data_from_packages_label.setObjectName(_fromUtf8("undecoded_data_from_packages_label"))
-        self.verticalLayout.addWidget(self.undecoded_data_from_packages_label)
         self.undecoded_data_textEdit = QtGui.QTextEdit(self.centralwidget)
+        self.undecoded_data_textEdit.setGeometry(QtCore.QRect(9, 39, 694, 146))
         self.undecoded_data_textEdit.setStyleSheet(_fromUtf8("background-color: qlineargradient(spread:reflect, x1:0.038, y1:0.517045, x2:1, y2:0.511, stop:0.402844 rgba(255, 255, 255, 254), stop:1 rgba(174, 151, 255, 255));"))
         self.undecoded_data_textEdit.setObjectName(_fromUtf8("undecoded_data_textEdit"))
-        self.verticalLayout.addWidget(self.undecoded_data_textEdit)
         self.simulator_systems_condition_label = QtGui.QLabel(self.centralwidget)
+        self.simulator_systems_condition_label.setGeometry(QtCore.QRect(9, 191, 340, 24))
         self.simulator_systems_condition_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
         self.simulator_systems_condition_label.setObjectName(_fromUtf8("simulator_systems_condition_label"))
-        self.verticalLayout.addWidget(self.simulator_systems_condition_label)
         self.simulator_systems_condition_tabWidget = QtGui.QTabWidget(self.centralwidget)
+        self.simulator_systems_condition_tabWidget.setGeometry(QtCore.QRect(9, 221, 694, 277))
         self.simulator_systems_condition_tabWidget.setStyleSheet(_fromUtf8("font: 75 12pt \"Ubuntu\";"))
         self.simulator_systems_condition_tabWidget.setDocumentMode(True)
         self.simulator_systems_condition_tabWidget.setObjectName(_fromUtf8("simulator_systems_condition_tabWidget"))
         self.electrical_power_tab = QtGui.QWidget()
         self.electrical_power_tab.setObjectName(_fromUtf8("electrical_power_tab"))
+        self.verticalLayout_2 = QtGui.QVBoxLayout(self.electrical_power_tab)
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
+        self.onboard_computer_parameters_gridLayout_3 = QtGui.QGridLayout()
+        self.onboard_computer_parameters_gridLayout_3.setObjectName(_fromUtf8("onboard_computer_parameters_gridLayout_3"))
+        self.label56 = QtGui.QLabel(self.electrical_power_tab)
+        self.label56.setStyleSheet(_fromUtf8("font: 75 18pt \"Ubuntu\";"))
+        self.label56.setObjectName(_fromUtf8("label56"))
+        self.onboard_computer_parameters_gridLayout_3.addWidget(self.label56, 0, 2, 1, 1)
+        self.power_voltage_lcdNumber = QtGui.QLCDNumber(self.electrical_power_tab)
+        self.power_voltage_lcdNumber.setStyleSheet(_fromUtf8("QLCDNumber{\n"
+"    color: rgb(255, 255, 255);    \n"
+"    background-color: rgb(133, 113, 255);\n"
+"}"))
+        self.power_voltage_lcdNumber.setDigitCount(6)
+        self.power_voltage_lcdNumber.setObjectName(_fromUtf8("power_voltage_lcdNumber"))
+        self.onboard_computer_parameters_gridLayout_3.addWidget(self.power_voltage_lcdNumber, 0, 1, 1, 1)
+        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.onboard_computer_parameters_gridLayout_3.addItem(spacerItem, 2, 1, 1, 1)
         self.electrical_power_solar_batteries_parameters_label = QtGui.QLabel(self.electrical_power_tab)
-        self.electrical_power_solar_batteries_parameters_label.setGeometry(QtCore.QRect(440, 380, 268, 23))
         self.electrical_power_solar_batteries_parameters_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
         self.electrical_power_solar_batteries_parameters_label.setObjectName(_fromUtf8("electrical_power_solar_batteries_parameters_label"))
+        self.onboard_computer_parameters_gridLayout_3.addWidget(self.electrical_power_solar_batteries_parameters_label, 0, 0, 1, 1)
+        self.power_source_label = QtGui.QLabel(self.electrical_power_tab)
+        self.power_source_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
+        self.power_source_label.setObjectName(_fromUtf8("power_source_label"))
+        self.onboard_computer_parameters_gridLayout_3.addWidget(self.power_source_label, 1, 1, 1, 1)
+        self.electrical_power_solar_batteries_parameters_label_2 = QtGui.QLabel(self.electrical_power_tab)
+        self.electrical_power_solar_batteries_parameters_label_2.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
+        self.electrical_power_solar_batteries_parameters_label_2.setObjectName(_fromUtf8("electrical_power_solar_batteries_parameters_label_2"))
+        self.onboard_computer_parameters_gridLayout_3.addWidget(self.electrical_power_solar_batteries_parameters_label_2, 1, 0, 1, 1)
+        self.verticalLayout_2.addLayout(self.onboard_computer_parameters_gridLayout_3)
         self.simulator_systems_condition_tabWidget.addTab(self.electrical_power_tab, _fromUtf8(""))
         self.communication_tab = QtGui.QWidget()
         self.communication_tab.setObjectName(_fromUtf8("communication_tab"))
@@ -170,8 +196,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.onboard_computer_parameters_gridLayout_2 = QtGui.QGridLayout()
         self.onboard_computer_parameters_gridLayout_2.setObjectName(_fromUtf8("onboard_computer_parameters_gridLayout_2"))
-        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.onboard_computer_parameters_gridLayout_2.addItem(spacerItem, 7, 0, 1, 1)
+        spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.onboard_computer_parameters_gridLayout_2.addItem(spacerItem1, 7, 0, 1, 1)
         self.solar_sensor_2_lcdNumber = QtGui.QLCDNumber(self.attitude_control_tab)
         self.solar_sensor_2_lcdNumber.setStyleSheet(_fromUtf8("QLCDNumber{\n"
 "    color: rgb(255, 255, 255);    \n"
@@ -402,8 +428,8 @@ class Ui_MainWindow(object):
         self.accelerometer_gyroscope_temperature_lcdNumberlabel.setStyleSheet(_fromUtf8("font: 75 13pt \"Ubuntu\";"))
         self.accelerometer_gyroscope_temperature_lcdNumberlabel.setObjectName(_fromUtf8("accelerometer_gyroscope_temperature_lcdNumberlabel"))
         self.gridLayout.addWidget(self.accelerometer_gyroscope_temperature_lcdNumberlabel, 6, 2, 1, 1)
-        spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem1, 7, 1, 1, 1)
+        spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem2, 7, 1, 1, 1)
         self.horizontalLayout.addLayout(self.gridLayout)
         self.simulator_systems_condition_tabWidget.addTab(self.attitude_control_tab, _fromUtf8(""))
         self.payloads_tab = QtGui.QWidget()
@@ -435,7 +461,6 @@ class Ui_MainWindow(object):
         self.parameters_research_module_label.setObjectName(_fromUtf8("parameters_research_module_label"))
         self.parameters_gridLayout.addWidget(self.parameters_research_module_label, 0, 0, 1, 2)
         self.simulator_systems_condition_tabWidget.addTab(self.payloads_tab, _fromUtf8(""))
-        self.verticalLayout.addWidget(self.simulator_systems_condition_tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionOpen = QtGui.QAction(MainWindow)
         self.actionOpen.setEnabled(True)
@@ -446,19 +471,22 @@ class Ui_MainWindow(object):
         self.actionClose.setObjectName(_fromUtf8("actionClose"))
 
         self.retranslateUi(MainWindow)
-        self.simulator_systems_condition_tabWidget.setCurrentIndex(1)
+        self.simulator_systems_condition_tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Telemetry decoder for miniaturized satellite simulator", None))
-        self.undecoded_data_from_packages_label.setText(_translate("MainWindow", "Содержимое пришедших пакетов телеметрической информации:", None))
+        self.undecoded_data_from_packages_label.setText(_translate("MainWindow", "Содержимое пакетов телеметрической информации:", None))
         self.undecoded_data_textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Ubuntu\'; font-size:11pt;\"><br /></p></body></html>", None))
         self.simulator_systems_condition_label.setText(_translate("MainWindow", "Параметры систем имитатора СМКА:", None))
-        self.electrical_power_solar_batteries_parameters_label.setText(_translate("MainWindow", "Parameters of solar baterries: ", None))
+        self.label56.setText(_translate("MainWindow", "V", None))
+        self.electrical_power_solar_batteries_parameters_label.setText(_translate("MainWindow", "Напряжение питания", None))
+        self.power_source_label.setText(_translate("MainWindow", "-", None))
+        self.electrical_power_solar_batteries_parameters_label_2.setText(_translate("MainWindow", "Источник энергии", None))
         self.simulator_systems_condition_tabWidget.setTabText(self.simulator_systems_condition_tabWidget.indexOf(self.electrical_power_tab), _translate("MainWindow", "Электроснабжение", None))
         self.simulator_systems_condition_tabWidget.setTabText(self.simulator_systems_condition_tabWidget.indexOf(self.communication_tab), _translate("MainWindow", "Связь", None))
         self.CPU_usage_checkBox.setText(_translate("MainWindow", "Загруженность 1-го ядра ЦП ", None))

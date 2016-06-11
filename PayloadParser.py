@@ -29,8 +29,8 @@ SENSOR_GYRO_Z = 'tel_mpu6050_gyro_z'
 SENSOR_ACCEL_X = 'tel_mpu6050_accel_x'
 SENSOR_ACCEL_Y = 'tel_mpu6050_accel_y'
 SENSOR_ACCEL_Z = 'tel_mpu6050_accel_z'
-
-
+SENSOR_POWER_VOLTAGE = 'tel_power_vs'
+SENSOR_POWER_SOURCE = 'tel_power_src'
 
 SENSOR_TYPES = {
     SENSOR_OS_CPU0: CAT_ONBOARD_COMP_SYS,
@@ -53,7 +53,9 @@ SENSOR_TYPES = {
     SENSOR_GYRO_Z: CAT_ATTITUDE_CONTROL_SYS,
     SENSOR_ACCEL_X: CAT_ATTITUDE_CONTROL_SYS,
     SENSOR_ACCEL_Y: CAT_ATTITUDE_CONTROL_SYS,
-    SENSOR_ACCEL_Z: CAT_ATTITUDE_CONTROL_SYS
+    SENSOR_ACCEL_Z: CAT_ATTITUDE_CONTROL_SYS,
+    SENSOR_POWER_VOLTAGE: CAT_ELECTRIC_POWER_SYS,
+    SENSOR_POWER_SOURCE: CAT_ELECTRIC_POWER_SYS,
 }
 
 
@@ -69,14 +71,19 @@ def traverse_tree(name, data, output):
 def get_category(key):
     if key in SENSOR_TYPES:
         return SENSOR_TYPES[key]
+    print "ignoring sensor", key
     return CAT_NONE
 
 
-def parse_ax25_payload(packet):
+def traverse_telemetry(tree):
     raw_telemetry = {}
-    print packet
-    traverse_tree("tel", json.loads(packet), raw_telemetry)
+    traverse_tree("tel", tree, raw_telemetry)
     payload = {}
     for key in raw_telemetry:
         payload[key] = {"cat": get_category(key), "val": raw_telemetry[key]}
     return payload
+
+
+def parse_json_payload(packet):
+    print packet
+    return json.loads(packet)

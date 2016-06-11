@@ -1,7 +1,6 @@
 from PyQt4.QtCore import QThreadPool
 
 from PayloadParser import SENSOR_TIMESTAMP, CAT_NONE
-
 from telemetry_sharing.WebsiteAPI import WebsiteAPI
 
 

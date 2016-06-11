@@ -1,7 +1,7 @@
 from PyQt4.QtCore import QObject, pyqtSignal
 
-from communication.KISS_thread import KISS_thread
-from PayloadParser import parse_ax25_payload
+from communication.KISS_Thread import KISS_Thread
+from PayloadParser import parse_json_payload, traverse_telemetry
 from telemetry_sharing.push_to_csv import push_to_csv
 from telemetry_sharing.push_to_website import push_to_website
 from telemetry_sharing.push_to_ftp_server import push_to_ftp_server
@@ -20,23 +20,23 @@ CMD_DEVICE_COMMAND = "CMD_DEVICE_COMMAND"
 
 class ControlSystem(QObject):
     payload_received = pyqtSignal("PyQt_PyObject", name="payloadReceived")
+    response_received = pyqtSignal("PyQt_PyObject", name="responseReceived")
 
     def __init__(self, parent):
         QObject.__init__(self, parent)
-        # communication_protocol = sp_kernel.SerialProtocol()
-        # writer_thread = WriterThread.WriterThread(self, communication_protocol)
-        # reader_thread = ReaderThread.ReaderThread(self, communication_protocol)
-        self.kiss_thread = KISS_thread(self)
-        # reader_thread.start()
-        # writer_thread.start()
+        self.kiss_thread = KISS_Thread(self)
         self.kiss_thread.start()
         self.kiss_thread.packet_received.connect(self.on_packet_received)
 
-    def send_command(self, cmd, arg = None, time_of_execution = None):
-         self.kiss_thread.send_command(cmd, arg, time_of_execution)
+    def send_command(self, cmd, arg=None, time_of_execution=None, device=None):
+        self.kiss_thread.send_command(cmd, arg, device, time_of_execution)
 
     def on_packet_received(self, packet):
-        payload = parse_ax25_payload(str(packet))
+        data = parse_json_payload(str(packet))
+        if "CmdID" in data:
+            self.response_received.emit(data)
+            return
+        payload = traverse_telemetry(data)
         # print "payload in linear struct", payload
         self.payload_received.emit(payload)
         push_to_website(payload)

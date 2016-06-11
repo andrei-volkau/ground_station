@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlProgramForm.ui'
 #
-# Created: Fri Jun 10 21:35:16 2016
+# Created: Sat Jun 11 15:04:16 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,6 +43,7 @@ class Ui_MainWindow(object):
         self.execution_date_time_gridLayout = QtGui.QGridLayout()
         self.execution_date_time_gridLayout.setObjectName(_fromUtf8("execution_date_time_gridLayout"))
         self.execution_dateTimeEdit = QtGui.QDateTimeEdit(self.centralwidget)
+        self.execution_dateTimeEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2016, 1, 1), QtCore.QTime(0, 0, 0)))
         self.execution_dateTimeEdit.setObjectName(_fromUtf8("execution_dateTimeEdit"))
         self.execution_date_time_gridLayout.addWidget(self.execution_dateTimeEdit, 1, 0, 1, 1)
         self.execution_date_time_checkBox = QtGui.QCheckBox(self.centralwidget)
@@ -192,6 +193,7 @@ class Ui_MainWindow(object):
         self.set_real_time_pushButton.setObjectName(_fromUtf8("set_real_time_pushButton"))
         self.real_time_clock_settings_gridLayout.addWidget(self.set_real_time_pushButton, 2, 1, 1, 1)
         self.set_real_time_date_TimeEdit = QtGui.QDateTimeEdit(self.layoutWidget)
+        self.set_real_time_date_TimeEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2016, 1, 1), QtCore.QTime(0, 0, 0)))
         self.set_real_time_date_TimeEdit.setObjectName(_fromUtf8("set_real_time_date_TimeEdit"))
         self.real_time_clock_settings_gridLayout.addWidget(self.set_real_time_date_TimeEdit, 2, 0, 1, 1)
         self.other_commands_real_time_clock_settings_label = QtGui.QLabel(self.layoutWidget)
@@ -214,7 +216,7 @@ class Ui_MainWindow(object):
         self.actionClose.setObjectName(_fromUtf8("actionClose"))
 
         self.retranslateUi(MainWindow)
-        self.modes_of_operation_tabWidget.setCurrentIndex(1)
+        self.modes_of_operation_tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -247,8 +249,8 @@ class Ui_MainWindow(object):
         self.enable_broadcasting_pushButton.setText(_translate("MainWindow", "Включить", None))
         self.disable_broadcasting_pushButton.setText(_translate("MainWindow", "Выключить", None))
         self.toggle_transmission_label.setText(_translate("MainWindow", "Вещание в эфир", None))
-        self.transceiver_select_comboBox.setItemText(0, _translate("MainWindow", "TNC A", None))
-        self.transceiver_select_comboBox.setItemText(1, _translate("MainWindow", "TNC B", None))
+        self.transceiver_select_comboBox.setItemText(0, _translate("MainWindow", "TNCA", None))
+        self.transceiver_select_comboBox.setItemText(1, _translate("MainWindow", "TNCB", None))
         self.transceiver_select_pushButton.setText(_translate("MainWindow", "Назначить основным", None))
         self.modes_of_operation_tabWidget.setTabText(self.modes_of_operation_tabWidget.indexOf(self.other_commands_tab), _translate("MainWindow", "Радиомодуль", None))
         self.set_real_time_pushButton.setText(_translate("MainWindow", "Отправить", None))

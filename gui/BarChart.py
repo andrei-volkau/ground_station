@@ -11,6 +11,7 @@ class BarChart(QtGui.QDialog):
     """
         Implements mechanism for plotting of a bar chart for given data.
     """
+
     def __init__(self, bar_chart_name, ordinate_name, data_for_plotting, parent=None):
         """Make a instance of BarChart class.
         Args:
@@ -52,7 +53,7 @@ class BarChart(QtGui.QDialog):
         # del data[0]
 
         number = len(self.data)
-        x = np.arange(1, number+1)
+        x = np.arange(1, number + 1)
         y = [num for (s, num) in self.data]
 
         # labels = [ s for (s, num) in data ]
@@ -62,7 +63,7 @@ class BarChart(QtGui.QDialog):
         plt.ylabel(self.ordinate_name)
         plt.xlabel("Package emitting date")
         labels = [s for (s, num) in self.data]
-        plt.xticks(x + width/2.0, labels)
+        plt.xticks(x + width / 2.0, labels)
 
         # refresh canvas
         self.canvas.draw()

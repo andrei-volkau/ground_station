@@ -1,40 +1,34 @@
-import sys
-import requests
 from PyQt4 import QtCore
+
 from loggers.error_logger import log_the_error
 
 
 class KissWriter(QtCore.QRunnable):
-    def __init__(self, kiss_prot):
+    def __init__(self, kiss_prot, source, dest):
         super(KissWriter, self).__init__()
         self.kiss_prot = kiss_prot
-
-    def set_destination(self, ssid):
-        self.ssid = ssid
-
-    def set_source(self, ssid):
-        None
-        # self.ssid = ssid
+        self.source = source
+        self.dest = dest
 
     def set_data(self, data):
         self.data = data
 
-    def buildpacket(self,source,source_ssid,dest,dest_ssid,control,pid,payload):
-        packet=[]
+    def build_packet(self, source, source_ssid, dest, dest_ssid, control, pid, payload):
+        packet = []
         for j in range(6):
-            if j<len(dest):
-                c=ord(dest[j])
-                packet.append(c<<1)
+            if j < len(dest):
+                c = ord(dest[j])
+                packet.append(c << 1)
             else:
                 packet.append(0x40)
-        packet.append(0x60|(dest_ssid<<1))
+        packet.append(0x60 | (dest_ssid << 1))
         for j in range(6):
-            if j<len(source):
-                c=ord(source[j])
-                packet.append(c<<1)
+            if j < len(source):
+                c = ord(source[j])
+                packet.append(c << 1)
             else:
                 packet.append(0x40)
-        packet.append(0xe1|(source_ssid<<1))
+        packet.append(0xe1 | (source_ssid << 1))
         packet.append(control)
         packet.append(pid)
         for j in range(len(payload)):
@@ -42,7 +36,8 @@ class KissWriter(QtCore.QRunnable):
         return packet
 
     def run(self):
-        packet=self.buildpacket("BSUGS ",0,self.ssid,0,0x03,0xf0,self.data)
+        print "sending packet"
+        packet = self.build_packet(self.source, 0, self.dest, 0, 0x03, 0xf0, self.data)
         final_packet = ''
         for i in packet:
             final_packet += chr(i)

@@ -1,6 +1,8 @@
 import sys
+
 import requests
 from PyQt4 import QtCore
+
 from loggers.error_logger import log_the_error
 
 

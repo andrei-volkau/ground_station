@@ -6,6 +6,5 @@ if os.name == 'nt':
 else:
     kiss_serial_name = "/dev/ttyACM0"
 
-
 kiss_baudrate = 9600
 
