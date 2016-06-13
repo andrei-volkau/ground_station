@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlProgramForm.ui'
 #
-# Created: Sat Jun 11 15:04:16 2016
+# Created: Mon Jun 13 20:14:34 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -133,6 +133,8 @@ class Ui_MainWindow(object):
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.device_id_comboBox.addItem(_fromUtf8(""))
+        self.device_id_comboBox.addItem(_fromUtf8(""))
+        self.device_id_comboBox.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.device_id_comboBox, 1, 0, 1, 1)
         self.device_command_pushButton = QtGui.QPushButton(self.gridLayoutWidget)
         self.device_command_pushButton.setObjectName(_fromUtf8("device_command_pushButton"))
@@ -216,7 +218,7 @@ class Ui_MainWindow(object):
         self.actionClose.setObjectName(_fromUtf8("actionClose"))
 
         self.retranslateUi(MainWindow)
-        self.modes_of_operation_tabWidget.setCurrentIndex(3)
+        self.modes_of_operation_tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -238,11 +240,13 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Управление питанием:", None))
         self.label_3.setText(_translate("MainWindow", "Отправка команд:", None))
         self.label_5.setText(_translate("MainWindow", "Имя команды:", None))
-        self.device_id_comboBox.setItemText(1, _translate("MainWindow", "light", None))
-        self.device_id_comboBox.setItemText(2, _translate("MainWindow", "hmc58831", None))
-        self.device_id_comboBox.setItemText(3, _translate("MainWindow", "mpu6050", None))
-        self.device_id_comboBox.setItemText(4, _translate("MainWindow", "ms5611", None))
-        self.device_id_comboBox.setItemText(5, _translate("MainWindow", "ds1621", None))
+        self.device_id_comboBox.setItemText(1, _translate("MainWindow", "power", None))
+        self.device_id_comboBox.setItemText(2, _translate("MainWindow", "cpu_temp", None))
+        self.device_id_comboBox.setItemText(3, _translate("MainWindow", "light", None))
+        self.device_id_comboBox.setItemText(4, _translate("MainWindow", "hmc58831", None))
+        self.device_id_comboBox.setItemText(5, _translate("MainWindow", "mpu6050", None))
+        self.device_id_comboBox.setItemText(6, _translate("MainWindow", "ms5611", None))
+        self.device_id_comboBox.setItemText(7, _translate("MainWindow", "ds1621", None))
         self.device_command_pushButton.setText(_translate("MainWindow", "Выполнить", None))
         self.modes_of_operation_tabWidget.setTabText(self.modes_of_operation_tabWidget.indexOf(self.toggle_power_tab), _translate("MainWindow", "Исполнительные устройства", None))
         self.label_4.setText(_translate("MainWindow", "Выбор основного передатчика:", None))
