@@ -90,31 +90,31 @@ class DataPlotter(QObject):
 
     def get_solar_sensor_1_plot(self):
         data = self.get_data_for_plotting(SENSOR_LIGHT1)
-        return BarChart(u"Солнечный датчик№1", u"Освещённость,Лк", data)
+        return BarChart(u"Solar sensor N1", u"Illumination, conventional units", data)
 
     def get_solar_sensor_2_plot(self):
         data = self.get_data_for_plotting(SENSOR_LIGHT2)
-        return BarChart(u"Солнечный датчик№1", u"Освещённость,Лк", data)
+        return BarChart(u"Solar sensor N2", u"Illumination, conventional units", data)
 
     def get_solar_sensor_3_plot(self):
         data = self.get_data_for_plotting(SENSOR_LIGHT3)
-        return BarChart(u"Солнечный датчик№1", u"Освещённость,Лк", data)
+        return BarChart(u"Solar sensor N3", u"Illumination, conventional units", data)
 
     def get_solar_sensor_4_plot(self):
         data = self.get_data_for_plotting(SENSOR_LIGHT4)
-        return BarChart(QString("Солнечный датчик№1"), u"Освещённость,Лк", data)
+        return BarChart(u"Solar sensor N4", u"Illumination, conventional units", data)
 
     def get_magnetometer_x_plot(self):
         data = self.get_data_for_plotting(SENSOR_MAGNET_X)
-        return BarChart(u"Magnetometer", u", Tl", data)
+        return BarChart(u"Magnetometer", u"Magnetic induction, mGs", data)
 
     def get_magnetometer_y_plot(self):
         data = self.get_data_for_plotting(SENSOR_MAGNET_Y)
-        return BarChart(u"Magnetometer", u", Tl", data)
+        return BarChart(u"Magnetometer", u"Magnetic induction, mGs", data)
 
     def get_magnetometer_z_plot(self):
         data = self.get_data_for_plotting(SENSOR_MAGNET_Z)
-        return BarChart(u"Magnetometer", u", Tl", data)
+        return BarChart(u"Magnetometer", u"Magnetic induction, mGs", data)
 
     def get_accelerometer_gyroscope_board_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_ACCELEROMETER_GYROSCOPE_TEMP)
@@ -123,3 +123,27 @@ class DataPlotter(QObject):
     def get_payload_module_temperature_plot(self):
         data = self.get_data_for_plotting(SENSOR_PAYLOAD_TEMP)
         return BarChart("Temperature at the research module", "Temperature, Celsius degrees", data)
+
+    def get_gyroscope_x_angular_velocity(self):
+        data = self.get_data_for_plotting(SENSOR_GYRO_X)
+        return BarChart("Angular velocity, X", "X component of angular velocity, Degrees/s", data)
+
+    def get_gyroscope_y_angular_velocity(self):
+        data = self.get_data_for_plotting(SENSOR_GYRO_X)
+        return BarChart("Angular velocity, Y", "Y component of angular velocity, Degrees/s", data)
+
+    def get_gyroscope_z_angular_velocity(self):
+        data = self.get_data_for_plotting(SENSOR_GYRO_X)
+        return BarChart("Angular velocity, Z", "Z component of angular velocity, Degrees/s", data)
+
+    def get_accelerometer_x_acceleration(self):
+        data = self.get_data_for_plotting(SENSOR_ACCEL_X)
+        return BarChart("Acceleration, X", "X component of acceleration, m/s2", data)
+
+    def get_accelerometer_y_acceleration(self):
+        data = self.get_data_for_plotting(SENSOR_ACCEL_Y)
+        return BarChart("Acceleration, Y", "Y component of acceleration, m/s2", data)
+
+    def get_accelerometer_z_acceleration(self):
+        data = self.get_data_for_plotting(SENSOR_ACCEL_Z)
+        return BarChart("Acceleration, Z", "Z component of acceleration, m/s2", data)

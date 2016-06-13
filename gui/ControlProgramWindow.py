@@ -6,7 +6,7 @@ from PyQt4.QtGui import QMainWindow, QTextCursor
 from ControlSystem import CMD_MINIMAL, CMD_NOMINAL, CMD_OPERATING, CMD_ENABLE_BROADCASTING, CMD_DISABLE_BROADCASTING, \
     CMD_SET_REAL_TIME, CMD_ENABLE_DEVICE, CMD_DISABLE_DEVICE, CMD_TRANSCEIVER_SELECT, CMD_DEVICE_COMMAND
 from gui.ui_forms import ControlProgramForm
-
+from sound import sound
 
 class ControlProgramWindow(QMainWindow):
     """
@@ -42,13 +42,13 @@ class ControlProgramWindow(QMainWindow):
         self.connect(self.ui_main_window.device_command_pushButton,
                      SIGNAL("clicked()"), self.on_device_command)
 
-
     def send_command_with_time_mark(self, command, argument=None, device=None):
         if self.ui_main_window.execution_date_time_checkBox.checkState() == 0:
             execution_time = self.ui_main_window.execution_dateTimeEdit.dateTime().toTime_t()
             self.control_system.send_command(command, arg=argument, time_of_execution=execution_time, device=device)
         else:
             self.control_system.send_command(command, arg=argument, device=device)
+        # sound.play(sound.CMD_IS_SENT)
 
     def on_enable_minimal_mode(self):
         self.send_command_with_time_mark(CMD_MINIMAL)
@@ -93,4 +93,5 @@ class ControlProgramWindow(QMainWindow):
 
     def on_response_received(self, data):
         text = str(data)
+        # print data
         self.ui_main_window.undecoded_packages_textEdit.append(text)

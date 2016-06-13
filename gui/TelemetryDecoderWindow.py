@@ -8,6 +8,7 @@ from DataPlotter import DataPlotter
 from PayloadParser import *
 from gui.ui_forms import TelemetryDecoderForm
 from gui.ui_forms.TelemetryDecoderForm import _fromUtf8
+from sound import sound
 
 
 class TelemetryDecoderWindow(QMainWindow):
@@ -60,6 +61,19 @@ class TelemetryDecoderWindow(QMainWindow):
                      self.on_plot_accelerometer_gyroscope_temperature)
         self.connect(self.ui_main_window.payload_temperature_checkBox, SIGNAL("stateChanged(int)"),
                      self.on_plot_payload_temperature)
+        self.connect(self.ui_main_window.gyroscope_x_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_gyroscope_x_angular_velocity)
+        self.connect(self.ui_main_window.gyroscope_y_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_gyroscope_y_angular_velocity)
+        self.connect(self.ui_main_window.gyroscope_z_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_gyroscope_z_angular_velocity)
+        self.connect(self.ui_main_window.accelerometer_x_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_accelerometer_x_acceleration)
+        self.connect(self.ui_main_window.accelerometer_y_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_accelerometer_y_acceleration)
+        self.connect(self.ui_main_window.accelerometer_z_checkBox, SIGNAL("stateChanged(int)"),
+                     self.on_plot_accelerometer_z_acceleration)
+
 
 
 
@@ -136,6 +150,24 @@ class TelemetryDecoderWindow(QMainWindow):
     def on_plot_payload_temperature(self, state):
         self.toggle_plot(state, SENSOR_PAYLOAD_TEMP, self.data_plotter.get_payload_module_temperature_plot)
 
+    def on_plot_gyroscope_x_angular_velocity(self, state):
+        self.toggle_plot(state, SENSOR_GYRO_X, self.data_plotter.get_gyroscope_x_angular_velocity)
+
+    def on_plot_gyroscope_y_angular_velocity(self, state):
+        self.toggle_plot(state, SENSOR_GYRO_Y, self.data_plotter.get_gyroscope_y_angular_velocity)
+
+    def on_plot_gyroscope_z_angular_velocity(self, state):
+        self.toggle_plot(state, SENSOR_GYRO_Z, self.data_plotter.get_gyroscope_z_angular_velocity)
+
+    def on_plot_accelerometer_x_acceleration(self, state):
+        self.toggle_plot(state, SENSOR_ACCEL_X, self.data_plotter.get_accelerometer_x_acceleration)
+
+    def on_plot_accelerometer_y_acceleration(self, state):
+        self.toggle_plot(state, SENSOR_ACCEL_Y, self.data_plotter.get_accelerometer_y_acceleration)
+
+    def on_plot_accelerometer_z_acceleration(self, state):
+        self.toggle_plot(state, SENSOR_ACCEL_Z, self.data_plotter.get_accelerometer_z_acceleration)
+
     def get_value(self, payload, sensor):
         if sensor in payload:
             v = str(payload[sensor]["val"])
@@ -145,6 +177,7 @@ class TelemetryDecoderWindow(QMainWindow):
         return ""
 
     def on_payload_received(self, payload):
+        # sound.play(sound.TELEMETRY_RECEIVED)
         self.ui_main_window.undecoded_data_textEdit.append(str(payload))
         self.ui_main_window.undecoded_data_textEdit.append("----------------------------------------------------")
 
