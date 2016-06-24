@@ -2,3 +2,6 @@
 *.lnk
 *.iml
 /.idea
+/log_files
+/.ropeproject
+

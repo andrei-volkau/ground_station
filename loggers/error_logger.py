@@ -4,7 +4,7 @@ from time import gmtime, strftime
 from loggers.logger import log_the_data
 
 
-ERROR_LOG_ADR = ".\log_files\exception_log_files\exception_log.csv"
+ERROR_LOG_ADR = "./log_files/exception_log_files/exception_log.csv"
 
 
 def log_the_error(error_message):
