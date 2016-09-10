@@ -13,6 +13,7 @@ import config
 from communication.KissWriter import KissWriter
 from loggers.error_logger import log_the_error
 from loggers.logger import log_the_data
+from sound import sound
 
 
 LOCAL_SSID = "BSUGS"
@@ -73,8 +74,9 @@ class KISS_Thread(QtCore.QThread):
             self.kiss_prot.start()
             self.kiss_prot.read(self.read_callback)
         except:
-            error_mesage = "Could not open port for CC430 transceiver." + ";" + str(sys.exc_info())
+            error_mesage = "Невозможно открыть порт для трансивера."
             log_the_error(error_mesage)
+            sound.play(error_mesage)
 
             print sys.exc_info()
             print "ax.25 is failed"
