@@ -14,6 +14,7 @@ TELEMETRY_RECEIVED = u"телеметрия принята"
 
 
 
+
 def play(text_to_read):
     print("sound ", text_to_read)
     #QSound(file_address).play()

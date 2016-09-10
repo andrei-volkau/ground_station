@@ -5,7 +5,13 @@ import numpy as np
 from PyQt4 import QtGui
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+from gui.ui_forms.TelemetryDecoderForm import _fromUtf8
 
+from matplotlib import rc
+
+font = {'family': 'Verdana',
+        'weight': 'normal'}
+rc('font', **font)
 
 class BarChart(QtGui.QDialog):
     """
@@ -59,9 +65,9 @@ class BarChart(QtGui.QDialog):
         # labels = [ s for (s, num) in data ]
         width = 0.9
         self.figure = plt.bar(x, y, width, color="m")
-        plt.title(self.graph_name)
+        plt.title(_fromUtf8(self.graph_name))
         plt.ylabel(self.ordinate_name)
-        plt.xlabel("Package emitting date")
+        plt.xlabel(u"Дата отправки пакета")
         labels = [s for (s, num) in self.data]
         plt.xticks(x + width / 2.0, labels)
 
