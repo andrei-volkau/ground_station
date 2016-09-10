@@ -1,7 +1,9 @@
 *.pyc
 *.lnk
 *.iml
-/.idea
-/log_files
+/.idea/
+/log_files/
 /.ropeproject
-
+/log_of_played_files/
+/files_for_play/
+*.autosave

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>608</width>
-    <height>647</height>
+    <height>739</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,29 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="2" column="0">
-     <widget class="QLabel" name="panel_for_manual_sending_of_commands_label">
-      <property name="styleSheet">
-       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Панель посыла команд в ручном режиме:</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::PlainText</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="undecoded_data_from_packages_label">
-      <property name="styleSheet">
-       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Панель отображения содержимого ответных пакетов:</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0">
      <layout class="QGridLayout" name="execution_date_time_gridLayout">
       <item row="1" column="0">
@@ -69,6 +46,29 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="undecoded_data_from_packages_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Панель отображения содержимого ответных пакетов:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="panel_for_manual_sending_of_commands_label">
+      <property name="styleSheet">
+       <string notr="true">font: 75 15pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Панель посыла команд в ручном режиме:</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
     </item>
     <item row="4" column="0">
      <widget class="QTabWidget" name="modes_of_operation_tabWidget">
@@ -168,7 +168,7 @@
           <x>10</x>
           <y>10</y>
           <width>581</width>
-          <height>213</height>
+          <height>269</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
@@ -277,6 +277,16 @@
           </widget>
          </item>
          <item row="8" column="1">
+          <widget class="QLineEdit" name="command_arg_lineEdit"/>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Аргумент команды:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="2">
           <widget class="QPushButton" name="device_command_pushButton">
            <property name="text">
             <string>Выполнить</string>

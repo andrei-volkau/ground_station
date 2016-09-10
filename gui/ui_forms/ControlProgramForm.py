@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlProgramForm.ui'
 #
-# Created: Mon Jun 13 20:14:34 2016
+# Created: Mon Jun 20 13:56:10 2016
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,20 +26,11 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(608, 647)
+        MainWindow.resize(608, 739)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.panel_for_manual_sending_of_commands_label = QtGui.QLabel(self.centralwidget)
-        self.panel_for_manual_sending_of_commands_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
-        self.panel_for_manual_sending_of_commands_label.setTextFormat(QtCore.Qt.PlainText)
-        self.panel_for_manual_sending_of_commands_label.setObjectName(_fromUtf8("panel_for_manual_sending_of_commands_label"))
-        self.gridLayout_2.addWidget(self.panel_for_manual_sending_of_commands_label, 2, 0, 1, 1)
-        self.undecoded_data_from_packages_label = QtGui.QLabel(self.centralwidget)
-        self.undecoded_data_from_packages_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
-        self.undecoded_data_from_packages_label.setObjectName(_fromUtf8("undecoded_data_from_packages_label"))
-        self.gridLayout_2.addWidget(self.undecoded_data_from_packages_label, 0, 0, 1, 1)
         self.execution_date_time_gridLayout = QtGui.QGridLayout()
         self.execution_date_time_gridLayout.setObjectName(_fromUtf8("execution_date_time_gridLayout"))
         self.execution_dateTimeEdit = QtGui.QDateTimeEdit(self.centralwidget)
@@ -53,6 +44,15 @@ class Ui_MainWindow(object):
         self.execution_date_time_label.setObjectName(_fromUtf8("execution_date_time_label"))
         self.execution_date_time_gridLayout.addWidget(self.execution_date_time_label, 0, 0, 1, 2)
         self.gridLayout_2.addLayout(self.execution_date_time_gridLayout, 3, 0, 1, 1)
+        self.undecoded_data_from_packages_label = QtGui.QLabel(self.centralwidget)
+        self.undecoded_data_from_packages_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
+        self.undecoded_data_from_packages_label.setObjectName(_fromUtf8("undecoded_data_from_packages_label"))
+        self.gridLayout_2.addWidget(self.undecoded_data_from_packages_label, 0, 0, 1, 1)
+        self.panel_for_manual_sending_of_commands_label = QtGui.QLabel(self.centralwidget)
+        self.panel_for_manual_sending_of_commands_label.setStyleSheet(_fromUtf8("font: 75 15pt \"Ubuntu\";"))
+        self.panel_for_manual_sending_of_commands_label.setTextFormat(QtCore.Qt.PlainText)
+        self.panel_for_manual_sending_of_commands_label.setObjectName(_fromUtf8("panel_for_manual_sending_of_commands_label"))
+        self.gridLayout_2.addWidget(self.panel_for_manual_sending_of_commands_label, 2, 0, 1, 1)
         self.modes_of_operation_tabWidget = QtGui.QTabWidget(self.centralwidget)
         self.modes_of_operation_tabWidget.setMinimumSize(QtCore.QSize(0, 50))
         self.modes_of_operation_tabWidget.setStyleSheet(_fromUtf8("font: 75 12pt \"Ubuntu\";"))
@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.toggle_power_tab = QtGui.QWidget()
         self.toggle_power_tab.setObjectName(_fromUtf8("toggle_power_tab"))
         self.gridLayoutWidget = QtGui.QWidget(self.toggle_power_tab)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 581, 213))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 581, 269))
         self.gridLayoutWidget.setObjectName(_fromUtf8("gridLayoutWidget"))
         self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setMargin(0)
@@ -136,9 +136,15 @@ class Ui_MainWindow(object):
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.device_id_comboBox.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.device_id_comboBox, 1, 0, 1, 1)
+        self.command_arg_lineEdit = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.command_arg_lineEdit.setObjectName(_fromUtf8("command_arg_lineEdit"))
+        self.gridLayout.addWidget(self.command_arg_lineEdit, 8, 1, 1, 1)
+        self.label_6 = QtGui.QLabel(self.gridLayoutWidget)
+        self.label_6.setObjectName(_fromUtf8("label_6"))
+        self.gridLayout.addWidget(self.label_6, 6, 1, 1, 1)
         self.device_command_pushButton = QtGui.QPushButton(self.gridLayoutWidget)
         self.device_command_pushButton.setObjectName(_fromUtf8("device_command_pushButton"))
-        self.gridLayout.addWidget(self.device_command_pushButton, 8, 1, 1, 1)
+        self.gridLayout.addWidget(self.device_command_pushButton, 8, 2, 1, 1)
         self.modes_of_operation_tabWidget.addTab(self.toggle_power_tab, _fromUtf8(""))
         self.other_commands_tab = QtGui.QWidget()
         self.other_commands_tab.setObjectName(_fromUtf8("other_commands_tab"))
@@ -223,10 +229,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Satellite simulator control program", None))
-        self.panel_for_manual_sending_of_commands_label.setText(_translate("MainWindow", "Панель посыла команд в ручном режиме:", None))
-        self.undecoded_data_from_packages_label.setText(_translate("MainWindow", "Панель отображения содержимого ответных пакетов:", None))
         self.execution_date_time_checkBox.setText(_translate("MainWindow", "Выполнить команду сразу при получении", None))
         self.execution_date_time_label.setText(_translate("MainWindow", "Установить время и дату выполнения посылаемой команды или выполнить команду сразу при получении:", None))
+        self.undecoded_data_from_packages_label.setText(_translate("MainWindow", "Панель отображения содержимого ответных пакетов:", None))
+        self.panel_for_manual_sending_of_commands_label.setText(_translate("MainWindow", "Панель посыла команд в ручном режиме:", None))
         self.enable_nominal_mode_pushButton.setText(_translate("MainWindow", "Отправить", None))
         self.enable_operating_mode_label.setText(_translate("MainWindow", "Перейти в режим работы с научной аппаратурой ", None))
         self.enable_operating_mode_pushButton.setText(_translate("MainWindow", "Отправить", None))
@@ -247,6 +253,7 @@ class Ui_MainWindow(object):
         self.device_id_comboBox.setItemText(5, _translate("MainWindow", "mpu6050", None))
         self.device_id_comboBox.setItemText(6, _translate("MainWindow", "ms5611", None))
         self.device_id_comboBox.setItemText(7, _translate("MainWindow", "ds1621", None))
+        self.label_6.setText(_translate("MainWindow", "Аргумент команды:", None))
         self.device_command_pushButton.setText(_translate("MainWindow", "Выполнить", None))
         self.modes_of_operation_tabWidget.setTabText(self.modes_of_operation_tabWidget.indexOf(self.toggle_power_tab), _translate("MainWindow", "Исполнительные устройства", None))
         self.label_4.setText(_translate("MainWindow", "Выбор основного передатчика:", None))
