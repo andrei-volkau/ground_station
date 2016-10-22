@@ -40,5 +40,5 @@ kiss_serial_name = get_kiss_serial_name()
 kiss_baudrate = 9600
 SOUND_ENABLED = False
 FTP_ENABLED = False
-CSV_ENABLED = False
+CSV_ENABLED = True
 WEB_ENABLED = False
