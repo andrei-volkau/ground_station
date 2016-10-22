@@ -74,7 +74,7 @@ class KISS_Thread(QtCore.QThread):
             self.kiss_prot.start()
             self.kiss_prot.read(self.read_callback)
         except:
-            error_mesage = u"Невозможно открыть порт для трансивера."
+            error_mesage = "CANNOT OPEN PORT"
             log_the_error(error_mesage)
             sound.play(error_mesage)
 

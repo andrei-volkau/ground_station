@@ -4,8 +4,8 @@ from time import gmtime, strftime
 from loggers.logger import log_the_data
 
 
-ERROR_LOG_ADR = "./log_files/exception_log_files/exception_log.csv"
+ERROR_LOG_ADR = u"./log_files/exception_log_files/exception_log.csv"
 
 
 def log_the_error(error_message):
-    log_the_data(ERROR_LOG_ADR, strftime(u"%Y-%m-%d %H:%M:%S", gmtime()) + u';' + error_message + u'\n')
+    log_the_data(ERROR_LOG_ADR,strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ';' + error_message + '\n')

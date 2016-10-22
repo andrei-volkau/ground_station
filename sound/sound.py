@@ -63,7 +63,6 @@ def parse_data(data):
 
     except:
         pass
-
     try:
        gyro = data['mpu6050']['gyro']
        text += u'Значение гироскопа в градусов d c. : икс {0}, игрек  {1}, зет  {2}. \n '.format(round(gyro['x'],2),
