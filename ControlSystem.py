@@ -6,6 +6,7 @@ from sound import sound
 from telemetry_sharing.push_to_csv import push_to_csv
 from telemetry_sharing.push_to_website import push_to_website
 from telemetry_sharing.push_to_ftp_server import push_to_ftp_server
+import config
 
 CMD_MINIMAL = "CMD_MINIMAL"
 CMD_NOMINAL = "CMD_NOMINAL"
@@ -46,6 +47,9 @@ class ControlSystem(QObject):
         print("ON_PACKET_RECEIVED")
         print(data)
         sound.parse_data(data)
-        push_to_website(payload)
-        push_to_csv(payload)
-        push_to_ftp_server()
+        if config.WEB_ENABLED:
+            push_to_website(payload)
+        if config.CSV_ENABLED:
+            push_to_csv(payload)
+        if config.FTP_ENABLED:
+            push_to_ftp_server()

@@ -8,3 +8,5 @@
 /files_for_play/
 *.autosave
 /docs/
+.DS_Store
+*.csv
